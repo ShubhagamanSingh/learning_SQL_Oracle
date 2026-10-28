@@ -1,33 +1,111 @@
 											DBMS
 										_____________
-										
 
-01. what is DBMS?
-02. what is database user?
-03. what is DBA?
-04. what is SQL?
-05. What is difference between alter and update command?
-06. What is difference between delete, truncate and drop command?
+01. What is DBMS?
+	-> DBMS stands for Database Management System. It is software used to create, store, organize, retrieve, update, secure, and manage data in a database. Oracle Database, MySQL, PostgreSQL, and SQL Server are examples of DBMSs.
+
+02. What is a database user?
+	-> A database user is a person, application, or account that accesses a database. Common database users include end users, application programmers, database designers, analysts, and database administrators.
+
+03. What is DBA?
+	-> DBA stands for Database Administrator. A DBA manages database installation, configuration, users, privileges, security, backup, recovery, availability, monitoring, and performance.
+
+04. What is SQL?
+	-> SQL stands for Structured Query Language. It is used to define database objects, retrieve and modify data, control privileges, and manage transactions in a relational database.
+
+05. What is the difference between ALTER and UPDATE command?
+	-> ALTER is a DDL command used to change the structure of a database object, such as adding or modifying a column. UPDATE is a DML command used to change values stored in existing table rows.
+
+06. What is the difference between DELETE, TRUNCATE, and DROP command?
+	-> DELETE removes selected rows or all rows from a table and can use a WHERE clause. It can be rolled back before COMMIT. TRUNCATE removes all rows, keeps the table structure, cannot use WHERE, and normally cannot be rolled back in Oracle because it performs an implicit commit. DROP removes the database object itself, including its structure.
+
 07. What is Primary key?
-	-> It is a field in a table which is used to identify the records uniquely.It is atomic and not NULL.
+	-> A primary key is a column or combination of columns that uniquely identifies every row in a table. Primary-key values must be unique and cannot be NULL. A table can have only one primary-key constraint, but that key may contain multiple columns.
+
 08. What is Foreign key?
-	-> It is a field in a table which works as primary key in another table.There can be more than one foreign key in a table.
-09. What is use of alter command how many types we can use alter command?
-10. what is join operation?
-11. What is nested querry?
-	-> when we use a query inside another query is called nested query.
-12. What is view? What are importance of view?
-13. What is check constraint?
+	-> A foreign key is a column or combination of columns that refers to a primary key or unique key in the same table or another table. It enforces referential integrity. A table can have more than one foreign key.
+
+09. What is the use of ALTER command? In how many ways can we use ALTER TABLE?
+	-> ALTER TABLE is used to change the structure of an existing table. Common operations are ADD a column or constraint, MODIFY a column, RENAME a column, DROP a column or constraint, and ENABLE or DISABLE a constraint.
+
+10. What is join operation?
+	-> A join combines related rows from two or more tables using a matching condition. Common joins are INNER JOIN, LEFT OUTER JOIN, RIGHT OUTER JOIN, FULL OUTER JOIN, CROSS JOIN, and SELF JOIN.
+
+11. What is nested query?
+	-> A nested query, also called a subquery, is a query written inside another SQL statement. The inner query supplies a value or set of rows to the outer query.
+
+12. What is view? What is the importance of view?
+	-> A view is a named, stored SELECT query that is presented like a table. A regular view stores the query definition rather than a separate copy of the rows. Views can simplify complex queries, expose only required rows or columns, provide a stable interface, and help control access. Only eligible views are directly updatable.
+
+13. What is CHECK constraint?
+	-> A CHECK constraint requires inserted or updated rows to satisfy a condition, such as salary >= 0. In Oracle, a CHECK condition that evaluates to UNKNOWN because of NULL is allowed, so use NOT NULL separately when a value is mandatory.
+
 14. What is NOT NULL constraint?
-15. What is Intrigity?
-16. What are Intrigity rules.// 2 types -> automic and referencial.
-17. COMPOSIT KEY:- 
-	-> IF YOU MAKE PRIMARY KEY BY COMBINING TWO OR MOST COLUMN, THEN RESULTANT KEY IS CALLED COMPOSIT KEY OR CANDIDATE KEY.
-18. what is pl/sql?
-19. what are features of pl/sql?
-20. write syntax for pl/sql blocks.
-21. is pl/sql os independent?
-22. what is diffrence between commit and roolback?
-23. what is difference between unique key and primary key?
-24. what is NOT NULL constraint?
-25. write a query to create foreign key.
+	-> A NOT NULL constraint requires every row to contain a value in that column. It prevents NULL values, but it does not require the values to be unique.
+
+15. What is integrity?
+	-> Data integrity means that data remains accurate, valid, complete, and consistent throughout its life cycle. Data types, constraints, keys, transactions, and access control help maintain integrity.
+
+16. What are integrity rules?
+	-> The two classic relational integrity rules are entity integrity and referential integrity. Entity integrity requires a primary key to uniquely identify each row and prevents NULL primary-key values. Referential integrity requires every non-NULL foreign-key value to match an existing referenced primary-key or unique-key value. Domain integrity is also used to ensure values follow their defined data type, range, and rules. Atomicity is an ACID transaction property, not an integrity rule.
+
+17. What is Composite key?
+	-> A composite key is a key made by combining two or more columns. If the combined columns uniquely identify a row and no column can be removed without losing uniqueness, the combination is also a candidate key. Composite key and candidate key are related terms, but they do not mean exactly the same thing.
+
+18. What is PL/SQL?
+	-> PL/SQL stands for Procedural Language extensions to SQL. It is Oracle's procedural programming language for combining SQL with variables, conditions, loops, cursors, exceptions, procedures, functions, packages, and triggers.
+
+19. What are the features of PL/SQL?
+	-> Important PL/SQL features include block structure, variables and strong data types, conditional statements, loops, cursors, exception handling, procedures, functions, packages, triggers, transaction control, and close integration with Oracle SQL.
+
+20. Write syntax for PL/SQL blocks.
+	-> The general syntax of a PL/SQL block is:
+
+	DECLARE
+		-- Optional declarations
+	BEGIN
+		-- Required executable statements
+	EXCEPTION
+		-- Optional exception handlers
+	END;
+	/
+
+	The DECLARE and EXCEPTION sections are optional. The BEGIN...END section is required. The final slash is a SQL*Plus or SQLcl command used to execute the buffered block.
+
+21. Is PL/SQL OS independent?
+	-> PL/SQL normally runs inside Oracle Database, so the same PL/SQL source is largely independent of the client operating system. However, PL/SQL is Oracle-specific, and code using operating-system files, external programs, or version-specific features may not be fully portable.
+
+22. What is the difference between COMMIT and ROLLBACK?
+	-> COMMIT permanently saves the current transaction and makes its changes visible to other sessions. ROLLBACK cancels uncommitted changes. ROLLBACK TO a savepoint can undo only the work performed after that savepoint. A normal ROLLBACK cannot undo changes after COMMIT.
+
+23. What is the difference between UNIQUE key and PRIMARY key?
+	-> Both constraints enforce uniqueness. A table can have only one primary-key constraint, and all primary-key columns are automatically NOT NULL. A table can have multiple UNIQUE constraints. In Oracle, a single-column UNIQUE constraint can contain multiple NULL values because NULL values are not treated as equal.
+
+24. What is NOT NULL constraint?
+	-> A NOT NULL constraint prevents a column from containing NULL. It should be used when a value is mandatory. It does not prevent duplicate non-NULL values.
+
+25. Write a query to create foreign key.
+	-> First create a parent key, then create or add the foreign key in the child table. Example:
+
+	CREATE TABLE department
+	(
+		department_id NUMBER(5) PRIMARY KEY,
+		department_name VARCHAR2(50) NOT NULL
+	);
+
+	CREATE TABLE employee
+	(
+		employee_id NUMBER(5) PRIMARY KEY,
+		employee_name VARCHAR2(50) NOT NULL,
+		department_id NUMBER(5),
+		CONSTRAINT employee_department_fk
+			FOREIGN KEY (department_id)
+			REFERENCES department (department_id)
+	);
+
+	A foreign key can also be added later with:
+
+	ALTER TABLE employee
+	ADD CONSTRAINT employee_department_fk
+	FOREIGN KEY (department_id)
+	REFERENCES department (department_id);
