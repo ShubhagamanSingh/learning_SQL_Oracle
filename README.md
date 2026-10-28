@@ -65,6 +65,13 @@ Examples containing `&name` use SQL\*Plus substitution variables and will prompt
 
 Create a disposable practice schema, run one lesson at a time, predict each result before executing it, and then change the sample values. For destructive statements such as `DROP` and `TRUNCATE`, confirm that you are connected to the practice schema first.
 
+### Online SQL practice
+
+Use **[SQL Practice](https://www.sql-practice.com/)** to run queries in your browser and work through interactive questions with automatic result validation. It is especially useful for practicing `SELECT`, `WHERE`, sorting, pattern matching, joins, aggregate functions, grouping, and subqueries without configuring a local database.
+
+> [!IMPORTANT]
+> SQL dialects differ. Treat the site as practice for portable SQL concepts, then verify Oracle-specific syntax in these notes or an Oracle environment. PL/SQL blocks, SQL\*Plus commands, Oracle data types, user administration, and some functions may not run unchanged in the online terminal.
+
 ## Important corrections made during conversion
 
 The Markdown edition fixes several easy-to-miss issues from the raw notes:

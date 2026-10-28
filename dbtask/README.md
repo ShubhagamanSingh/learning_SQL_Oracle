@@ -29,6 +29,8 @@ SET SERVEROUTPUT ON;
 4. Test one valid and one invalid value for each constraint or branch.
 5. Use `ROLLBACK` deliberately before trying `COMMIT`.
 
+For additional browser-based query practice, work through the interactive exercises at **[SQL Practice](https://www.sql-practice.com/)**. Use it for general SQL querying skills, but run Oracle-specific SQL, SQL\*Plus commands, and PL/SQL in an Oracle environment.
+
 The `.txt` files beside these lessons preserve the original SQL\*Plus output. The Markdown files correct syntax and logic while retaining the original topics, data, and outcomes.
 
 ---
