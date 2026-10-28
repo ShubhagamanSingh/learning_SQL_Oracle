@@ -231,3 +231,7 @@ For 200 units, the bill is `150 × 2.40 + 50 × 3.00 = 510`, matching the sessio
 Continue to [Day 6](day6.md).
 
 > Original SQL\*Plus transcript: [day5.txt](day5.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

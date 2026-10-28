@@ -110,3 +110,7 @@ To make the relationship mandatory, declare `person_id NOT NULL`. To define pare
 Continue to [Day 3](day3.md).
 
 > Original SQL\*Plus transcript: [day2.txt](day2.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

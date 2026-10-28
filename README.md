@@ -2,6 +2,8 @@
 
 Beginner-friendly notes, examples, exercises, and classroom practice for Oracle SQL, SQL\*Plus, and PL/SQL.
 
+Created and maintained by **[Shubhagaman Singh](https://shubhagaman.in)**. For questions, corrections, or permissions, email [shubhagamansingh@gmail.com](mailto:shubhagamansingh@gmail.com).
+
 The material began as personal classroom transcripts from 2021. It has been reorganized for learners, corrected where necessary, and enriched with explanations and runnable examples. The original `.txt` files remain beside the Markdown lessons as a historical archive.
 
 ## Learning path
@@ -83,6 +85,16 @@ The Markdown edition fixes several easy-to-miss issues from the raw notes:
 - Rewrite old comma joins with explicit `JOIN ... ON` syntax.
 - Extend the PL/SQL programs with input validation and exception handling.
 
+## License, copyright, and policies
+
+Copyright © 2021–2026 **Shubhagaman Singh**. Except where otherwise noted, the original educational material is licensed under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International](LICENSE.md).
+
+You may share and adapt the material for non-commercial purposes when you credit Shubhagaman Singh, link to <https://shubhagaman.in>, identify changes, and distribute adaptations under the same license.
+
+See the [Legal and Policy Index](LEGAL.md) for copyright, terms, privacy, disclaimer, trademark, contribution, conduct, and security information.
+
 ---
 
 These notes are educational examples. Test them in a disposable schema before adapting them to a real system.
+
+**Author:** [Shubhagaman Singh](https://shubhagaman.in) · **Contact:** [shubhagamansingh@gmail.com](mailto:shubhagamansingh@gmail.com) · **License:** [CC BY-NC-SA 4.0](LICENSE.md)

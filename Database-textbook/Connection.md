@@ -448,3 +448,7 @@ ROLLBACK;
 Continue with [views and constraints](VIEW.md) or keep [syntax.md](syntax.md) open as a quick reference.
 
 > Original classroom source: [Connection.txt](Connection.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

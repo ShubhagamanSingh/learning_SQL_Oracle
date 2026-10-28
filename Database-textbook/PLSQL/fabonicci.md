@@ -83,3 +83,7 @@ Build one line using a string accumulator, taking care not to add a comma before
 Return to the [PL/SQL lesson index](README.md).
 
 > Original SQL\*Plus transcript: [fabonicci.txt](fabonicci.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../../LICENSE.md).

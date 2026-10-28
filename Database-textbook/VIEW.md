@@ -248,3 +248,7 @@ SELECT * FROM emp_info WHERE salary >= 50000;
 Continue with [PL/SQL fundamentals](PLSQL/PLSQL.md).
 
 > Original classroom source: [VIEW.txt](VIEW.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

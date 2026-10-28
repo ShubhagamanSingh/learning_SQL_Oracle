@@ -405,3 +405,7 @@ The integer loop variable is declared implicitly and is local to the loop.
 - [PL/SQL worked examples](PLSQL/PLSQL_CODE.md)
 
 > Original classroom source: [syntax.txt](syntax.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

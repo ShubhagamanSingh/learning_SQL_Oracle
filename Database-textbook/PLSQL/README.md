@@ -28,3 +28,7 @@ Values such as `&n` are SQL\*Plus substitution variables. The client replaces th
 4. Run every loop by hand for its first two iterations.
 5. Test edge cases such as zero, a negative value, and division by zero.
 6. Add an `EXCEPTION` section to a program.
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../../LICENSE.md).

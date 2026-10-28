@@ -160,3 +160,7 @@ END;
 Return to [PL/SQL fundamentals](PLSQL.md) or continue with [Fibonacci](fabonicci.md).
 
 > Original SQL\*Plus transcript: [PLSQL_CODE.txt](PLSQL_CODE.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../../LICENSE.md).

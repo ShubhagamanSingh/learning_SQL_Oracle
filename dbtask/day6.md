@@ -234,3 +234,7 @@ That explains the historical final values of 5000 and 4000 together with a later
 See the related [18 December classwork](CW_18-12-2021.md).
 
 > Original SQL\*Plus transcript: [day6.txt](day6.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

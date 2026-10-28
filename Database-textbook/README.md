@@ -26,3 +26,7 @@ Interview review
 ```
 
 The adjacent `.txt` files are the original classroom notes. Use the Markdown files for learning and the text files only when you want to compare with the historical transcript.
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

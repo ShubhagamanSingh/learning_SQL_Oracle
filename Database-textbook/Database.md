@@ -130,3 +130,7 @@ After a `COMMIT`, a normal `ROLLBACK` cannot undo the committed work.
 Continue with the guided [Oracle SQL\*Plus workbook](Connection.md).
 
 > Original classroom source: [Database.txt](Database.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

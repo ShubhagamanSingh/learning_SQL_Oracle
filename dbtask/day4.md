@@ -136,3 +136,7 @@ The client query returns Ashok Mehra, Ajey Mehra, and Nalini Deewan. The salespe
 Continue to [Day 5](day5.md).
 
 > Original SQL\*Plus transcript: [day4.txt](day4.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

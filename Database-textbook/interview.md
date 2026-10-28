@@ -187,3 +187,7 @@ The referenced parent column set must be protected by a primary-key or unique co
 See [Database.md](Database.md), [Connection.md](Connection.md), and [PLSQL/PLSQL.md](PLSQL/PLSQL.md) for the longer lessons.
 
 > Original question list: [interview.txt](interview.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

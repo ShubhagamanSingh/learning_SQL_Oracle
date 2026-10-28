@@ -136,3 +136,7 @@ COMMIT;
 Continue to [Day 2](day2.md).
 
 > Original SQL\*Plus transcript: [day1.txt](day1.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

@@ -30,3 +30,7 @@ SET SERVEROUTPUT ON;
 5. Use `ROLLBACK` deliberately before trying `COMMIT`.
 
 The `.txt` files beside these lessons preserve the original SQL\*Plus output. The Markdown files correct syntax and logic while retaining the original topics, data, and outcomes.
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).

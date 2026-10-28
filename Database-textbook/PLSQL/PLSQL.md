@@ -265,3 +265,7 @@ Handle exceptions you understand and can respond to. Avoid silently swallowing a
 Continue with [worked PL/SQL examples](PLSQL_CODE.md) and the [Fibonacci program](fabonicci.md).
 
 > Original classroom source: [PLSQL.txt](PLSQL.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../../LICENSE.md).

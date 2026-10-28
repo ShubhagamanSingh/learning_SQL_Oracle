@@ -115,3 +115,7 @@ WHERE salary_rank = 2;
 Continue to [Day 4](day4.md).
 
 > Original SQL\*Plus transcript: [day3.txt](day3.txt)
+
+---
+
+Copyright © 2021–2026 [Shubhagaman Singh](https://shubhagaman.in). Licensed under [CC BY-NC-SA 4.0](../LICENSE.md).
