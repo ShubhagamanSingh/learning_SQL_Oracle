@@ -1,0 +1,66 @@
+database management system is a type of application software which is used to manage database.
+ 
+ Datatbase user:- 
+ 
+		1. End user:- End users are those users who uses database through application. but they dont know about exixtence and structure of database. 
+		
+		2. Programers:- Programers are professionals who uses database in application developement.
+		
+		3. DBA:- DBA is stand for Database Administrator. the dba is responcible for creation of database and he/she also provide security in database. 
+		
+
+SQL:- Structured Query language:- 
+
+		sql is stand for structured query language. it is used to perform database operations. sql is categorized in 4 parts:- 
+		
+			1. DDL:- Data Definition Language.
+			2. DML:- Data Manipulation Language.
+			3. DCL:- Data Control Language.
+			4. TCL:- Transaction Control Language.
+			
+	1. DDL Commands:-
+	
+			those commands which are used to define database are called DDL commands.
+			
+			while using DDL commands we write the type of database object we are using like: 
+		
+		1. create:- to creat a new database object.
+		
+		2. alter :- to modify database object.
+		
+		3. drop  :- to delete database object.
+		
+		4. truncate:- to delete all from database object.//but don't delete datatbase structure.
+		
+		5. backup:- to take backup of database.
+		
+		6. restore:- to reconstruct database from its backup.
+	
+	2. DML Commands:- 
+	
+			those commands which are used to work with records are DML command.
+			
+		1. insert:- to insert data into database object.
+		
+		2. delete:- to delete record from database object.
+		
+		3. update:- to modify record in database object.
+		
+		4. select:- to select records from database object.
+		
+	3. DCL Commands:- 
+			
+			DCL is used when only DML commands are used before.
+	 		
+		1. grant:- to give rights to database user.
+		
+		2. revoke:- is just opposite to grant command.//to take all rights from database user.
+		
+		3. rename:- is used to rename database objects.
+		
+	4. TCL Commands:-
+	
+		1. commit:- to save transaction.
+		
+		2. rollback:- to undo the transaction.
+		

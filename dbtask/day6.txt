@@ -1,0 +1,419 @@
+Microsoft Windows [Version 10.0.19042.985]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\SHUBHAGAMAM SINGH>sqlplus / as sysdba
+
+SQL*Plus: Release 11.2.0.2.0 Beta on Sat Dec 18 14:09:00 2021
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - Beta
+
+SQL> connect mydb/test;
+Connected.
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+CLIENT                         VIEW
+CLIENT_MASTER                  TABLE
+ORDERS                         TABLE
+PERSONAL                       TABLE
+SALESMAN                       VIEW
+SALESMAN_MASTER                TABLE
+SALES_ORDER                    TABLE
+SALES_ORDER_DETAILS            TABLE
+SPIEMP                         TABLE
+STAFF                          TABLE
+STUDENT                        TABLE
+
+11 rows selected.
+
+SQL> create table accounts
+  2  (
+  3  account_id varchar2(10),
+  4  name varchar2(20),
+  5  balance number(6)
+  6  );
+
+Table created.
+
+SQL> drop table accounts;
+
+Table dropped.
+
+SQL> create table accounts
+  2  (
+  3  account_id varchar2(10) check(account_id like 'AC%'),
+  4  name varchar2(20),
+  5  balance number(6)
+  6  );
+
+Table created.
+
+SQL> insert into accounts values('&account_id','&name',&balance);
+Enter value for account_id: AC001
+Enter value for name: Ajay
+Enter value for balance: 5000
+old   1: insert into accounts values('&account_id','&name',&balance)
+new   1: insert into accounts values('AC001','Ajay',5000)
+
+1 row created.
+
+SQL> /
+Enter value for account_id: AC002
+Enter value for name: Anand
+Enter value for balance: 10000
+old   1: insert into accounts values('&account_id','&name',&balance)
+new   1: insert into accounts values('AC002','Anand',10000)
+
+1 row created.
+
+SQL> /
+Enter value for account_id: AC003
+Enter value for name: Yashi
+Enter value for balance: 5000
+old   1: insert into accounts values('&account_id','&name',&balance)
+new   1: insert into accounts values('AC003','Yashi',5000)
+
+1 row created.
+
+SQL> /
+Enter value for account_id: AC004
+Enter value for name: Brijesh
+Enter value for balance: 15000
+old   1: insert into accounts values('&account_id','&name',&balance)
+new   1: insert into accounts values('AC004','Brijesh',15000)
+
+1 row created.
+
+SQL> /
+Enter value for account_id: AC005
+Enter value for name: Rohit
+Enter value for balance: 10000
+old   1: insert into accounts values('&account_id','&name',&balance)
+new   1: insert into accounts values('AC005','Rohit',10000)
+
+1 row created.
+
+SQL> select * from accounts;
+
+ACCOUNT_ID NAME                    BALANCE
+---------- -------------------- ----------
+AC001      Ajay                       5000
+AC002      Anand                     10000
+AC003      Yashi                      5000
+AC004      Brijesh                   15000
+AC005      Rohit                     10000
+
+declare
+acid varchar2(10);
+bal int;
+begin
+acid:='&acid';
+select balance into bal from accounts where account_id=acid;
+bal:=bal-3000;
+if bal>=1000 then
+update accounts set balance=bal where account_id=acid;
+commit;
+dbms_output.put_line('Debited Successfully !');
+else
+dbms_output.put_line('Insafficient Balance !');
+end if;
+end;
+/
+
+SQL> declare
+  2  acid varchar2(10);
+  3  bal int;
+  4  begin
+  5  acid:='&acid';
+  6  select balance into bal from accounts where account_id=acid;
+  7  bal:=bal-3000;
+  8  if bal>=1000 then
+  9  update accounts set balance=bal where account_id=acid;
+ 10  commit;
+ 11  dbms_output.put_line('Debited Successfully !');
+ 12  else
+ 13  dbms_output.put_line('Insafficient Balance !');
+ 14  end if;
+ 15  end;
+ 16  /
+Enter value for acid: AC003
+old   5: acid:='&acid';
+new   5: acid:='AC003';
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on;
+SQL> declare
+  2  acid varchar2(10);
+  3  bal int;
+  4  begin
+  5  acid:='&acid';
+  6  select balance into bal from accounts where account_id=acid;
+  7  bal:=bal-3000;
+  8  if bal>=1000 then
+  9  update accounts set balance=bal where account_id=acid;
+ 10  commit;
+ 11  dbms_output.put_line('Debited Successfully !');
+ 12  else
+ 13  dbms_output.put_line('Insafficient Balance !');
+ 14  end if;
+ 15  end;
+ 16  /
+Enter value for acid: AC003
+old   5: acid:='&acid';
+new   5: acid:='AC003';
+Insafficient Balance !
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from accounts;
+
+ACCOUNT_ID NAME                    BALANCE
+---------- -------------------- ----------
+AC001      Ajay                       5000
+AC002      Anand                     10000
+AC003      Yashi                      2000
+AC004      Brijesh                   15000
+AC005      Rohit                     10000
+
+create table areas
+(
+radius number(4),
+area number(10,2)
+);
+
+SQL> create table areas
+  2  (
+  3  radius number(4),
+  4  area number(10,2)
+  5  );
+
+Table created.
+
+declare
+r float;
+a float;
+begin
+r:=&r;
+a:=(3.14*r*r);
+insert into areas values(r,a);
+dbms_output.put_line('Area is: '||(a));
+end;
+/
+
+SQL> declare
+  2  r float;
+  3  a float;
+  4  begin
+  5  r:=&r;
+  6  a:=(3.14*r*r);
+  7  insert into areas values(r,a);
+  8  dbms_output.put_line('Area is: '||(a));
+  9  end;
+ 10  /
+Enter value for r: 3
+old   5: r:=&r;
+new   5: r:=3;
+Area is: 28.26
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for r: 4
+old   5: r:=&r;
+new   5: r:=4;
+Area is: 50.24
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for r: 5
+old   5: r:=&r;
+new   5: r:=5;
+Area is: 78.5
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for r: 6
+old   5: r:=&r;
+new   5: r:=6;
+Area is: 113.04
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Enter value for r: 7
+old   5: r:=&r;
+new   5: r:=7;
+Area is: 153.86
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from areas;
+
+    RADIUS       AREA
+---------- ----------
+         3      28.26
+         4      50.24
+         5       78.5
+         6     113.04
+         7     153.86
+
+declare
+n int;
+a int;
+r int;
+begin
+n:=&n;
+a:=0;
+while(n>0)
+loop
+r:=n rem 10;
+a:=(a*10)+r;
+n:=n/10;
+end loop;
+dbms_output.put_line('reverse is: '||(a));
+end;
+/
+
+
+SQL> declare
+  2  n int;
+  3  a int;
+  4  r int;
+  5  begin
+  6  n:=&n;
+  7  a:=0;
+  8  while(n>0)
+  9  loop
+ 10  r:=n rem 10;
+ 11  a:=(a*10)+r;
+ 12  n:=n/10;
+ 13  end loop;
+ 14  dbms_output.put_line('reverse is: '||(a));
+ 15  end;
+ 16  /
+Enter value for n: 123
+old   6: n:=&n;
+new   6: n:=123;
+reverse is: 321
+
+PL/SQL procedure successfully completed.
+
+create table exp
+(
+emp_no varchar2(10) check(emp_no like 'E%'),
+emp_name varchar2(20),
+salary number(6),
+primary key(emp_no)
+);
+
+insert into exp values('E001','Harry',5000);
+insert into exp values('E002','Black',1000);
+insert into exp values('E003','Jack',5000);
+insert into exp values('E004','Clark',1000);
+
+
+SQL> create table exp
+  2  (
+  3  emp_no varchar2(10) check(emp_no like 'E%'),
+  4  emp_name varchar2(20),
+  5  salary number(6),
+  6  primary key(emp_no)
+  7  );
+
+Table created.
+
+SQL> insert into exp values('E001','Harry',5000);
+
+1 row created.
+
+SQL> insert into exp values('E002','Black',1000);
+
+1 row created.
+
+SQL> insert into exp values('E003','Jack',5000);
+
+1 row created.
+
+SQL> insert into exp values('E004','Clark',1000);
+
+1 row created.
+
+SQL> select * from exp;
+
+EMP_NO     EMP_NAME                 SALARY
+---------- -------------------- ----------
+E001       Harry                      5000
+E002       Black                      1000
+E003       Jack                       5000
+E004       Clark                      1000
+
+declare
+sal number(8);
+salb number(6);
+salc number(6);
+begin
+select salary into salb from exp where emp_no='E002';
+select salary into salc from exp where emp_no='E004';
+salb:=salb+2000;
+salc:=salc+1500;
+update exp set salary=salb where emp_no='E002';
+update exp set salary=salc where emp_no='E004';
+select sum(salary) into sal from exp;
+if sal<20000 then
+commit;
+dbms_output.put_line('Updated Successfully !');
+else
+rollback;
+dbms_output.put_line('Rollback Successfully !');
+end if;
+end;
+/
+
+
+SQL> declare
+  2  sal number(8);
+  3  salb number(6);
+  4  salc number(6);
+  5  begin
+  6  select salary into salb from exp where emp_no='E002';
+  7  select salary into salc from exp where emp_no='E004';
+  8  salb:=salb+2000;
+  9  salc:=salc+1500;
+ 10  update exp set salary=salb where emp_no='E002';
+ 11  update exp set salary=salc where emp_no='E004';
+ 12  select sum(salary) into sal from exp;
+ 13  if sal<20000 then
+ 14  commit;
+ 15  dbms_output.put_line('Updated Successfully !');
+ 16  else
+ 17  rollback;
+ 18  dbms_output.put_line('Rollback Successfully !');
+ 19  end if;
+ 20  end;
+ 21  /
+Updated Successfully !
+
+PL/SQL procedure successfully completed.
+
+SQL> /
+Rollback Successfully !
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from exp;
+
+EMP_NO     EMP_NAME                 SALARY
+---------- -------------------- ----------
+E001       Harry                      5000
+E002       Black                      5000
+E003       Jack                       5000
+E004       Clark                      4000
+

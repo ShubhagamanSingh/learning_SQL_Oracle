@@ -1,0 +1,153 @@
+Microsoft Windows [Version 10.0.19042.985]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\SHUBHAGAMAM SINGH>sqlplus / as sysdba;
+
+SQL*Plus: Release 11.2.0.2.0 Beta on Mon Dec 13 14:34:19 2021
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - Beta
+
+SQL> create user mydb identified by test;
+
+User created.
+
+SQL> grant dba to mydb;
+
+Grant succeeded.
+
+SQL> connect mydb/test;
+Connected.
+SQL> create table customer
+  2  (
+  3  cust_id number(5) primary key,
+  4  cust_name varchar2(30),
+  5  contactno varchar2(15),
+  6  emailaddress varchar2(30)
+  7  );
+
+Table created.
+
+SQL> insert into customer values(1001,'Ravi','9453318798','ravi@gmail.com');
+
+1 row created.
+
+SQL> insert into customer values(1002,'Priya','9936652039','priya@gmail.com');
+
+1 row created.
+
+SQL> insert into customer values(1003,'Rohit','7753001621','rohit@gmail.com');
+
+1 row created.
+
+SQL> insert into customer values(1004,'Disha','7080102006','disha@gmail.com');
+
+1 row created.
+
+SQL> select * from customer;
+
+   CUST_ID CUST_NAME                      CONTACTNO
+---------- ------------------------------ ---------------
+EMAILADDRESS
+------------------------------
+      1001 Ravi                           9453318798
+ravi@gmail.com
+
+      1002 Priya                          9936652039
+priya@gmail.com
+
+      1003 Rohit                          7753001621
+rohit@gmail.com
+
+
+   CUST_ID CUST_NAME                      CONTACTNO
+---------- ------------------------------ ---------------
+EMAILADDRESS
+------------------------------
+      1004 Disha                          7080102006
+disha@gmail.com
+
+
+SQL> select * from customer;
+
+   CUST_ID CUST_NAME                      CONTACTNO
+---------- ------------------------------ ---------------
+EMAILADDRESS
+------------------------------
+      1001 Ravi                           9453318798
+ravi@gmail.com
+
+      1002 Priya                          9936652039
+priya@gmail.com
+
+      1003 Rohit                          7753001621
+rohit@gmail.com
+
+
+   CUST_ID CUST_NAME                      CONTACTNO
+---------- ------------------------------ ---------------
+EMAILADDRESS
+------------------------------
+      1004 Disha                          7080102006
+disha@gmail.com
+
+
+SQL> select cust_id, cust_name, emailaddress from customer;
+
+   CUST_ID CUST_NAME                      EMAILADDRESS
+---------- ------------------------------ ------------------------------
+      1001 Ravi                           ravi@gmail.com
+      1002 Priya                          priya@gmail.com
+      1003 Rohit                          rohit@gmail.com
+      1004 Disha                          disha@gmail.com
+
+SQL> select cust_id, cust_name, emailaddress from customer where cust_id=1004;
+
+   CUST_ID CUST_NAME                      EMAILADDRESS
+---------- ------------------------------ ------------------------------
+      1004 Disha                          disha@gmail.com
+
+SQL> commit;
+
+Commit complete.
+
+SQL> delete from customer where cust_id=1004;
+
+1 row deleted.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> update customer set contactno='7080102008' where cust_id=1003;
+
+1 row updated.
+
+SQL> select * from customer;
+
+   CUST_ID CUST_NAME                      CONTACTNO
+---------- ------------------------------ ---------------
+EMAILADDRESS
+------------------------------
+      1001 Ravi                           9453318798
+ravi@gmail.com
+
+      1002 Priya                          9936652039
+priya@gmail.com
+
+      1003 Rohit                          7080102008
+rohit@gmail.com
+
+
+   CUST_ID CUST_NAME                      CONTACTNO
+---------- ------------------------------ ---------------
+EMAILADDRESS
+------------------------------
+      1004 Disha                          7080102006
+disha@gmail.com
+
+
+SQL>

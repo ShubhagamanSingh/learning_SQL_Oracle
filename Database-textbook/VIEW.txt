@@ -1,0 +1,233 @@
+VIEW:-
+	
+	VIEW IS A LOGICAL TABLE WHICH IS CREATED BY ANOTHER TABLE.
+	IF YOU HAVE A TABLE WITH SOME IMPORTANT FIELDS AND SOME UNIMPORTENT FIELDS, 
+	SO YOU CAN CREATE A VIEW OF UNIMPORTANT FIELDS AND ASSIGN THAT VIEW TO AN OPERATOR.
+	WHEN OPERATOR INSERT RECORDS IN VIEW THEN MAIN TABLE WILL ALSO AFFECTED.
+	
+________________________________________________________________________________________________________________
+
+CREATE A TABLE:-
+----------------
+
+SQL> create table empinfo
+  2  (
+  3  empid number(5) primary key,
+  4  empname varchar2(20),
+  5  department varchar2(20),
+  6  salary number(6)
+  7  );
+
+Table created.
+
+SQL> desc empinfo;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL NUMBER(5)
+ EMPNAME                                            VARCHAR2(20)
+ DEPARTMENT                                         VARCHAR2(20)
+ SALARY                                             NUMBER(6)
+
+NOW CREATE A VIEW WITH 3 FIELDS 'EMPID', 'EMPNAME' AND 'DEPARTMENT':-
+----------------------------------------------------------------------
+SYNTAX:-
+
+create view emp as select empid,empname,department from empinfo;
+
+QUERY:-
+	
+SQL> create view emp as select empid,empname,department from empinfo;
+
+View created.
+
+SQL> desc emp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL NUMBER(5)
+ EMPNAME                                            VARCHAR2(20)
+ DEPARTMENT                                         VARCHAR2(20)
+ 
+________________________________________________________________________________________________________________
+
+INSERT RECORDS IN VIEW:-
+
+insert into emp values(1001,'Shubh Singh','Developement');
+insert into emp values(1002,'Shikha Mishra','HR');
+insert into emp values(1003,'Rajat Singh','Management');
+
+________________________________________________________________________________________________________________
+
+
+SQL> insert into emp values(1001,'Shubh Singh','Developement');
+
+1 row created.
+
+SQL> insert into emp values(1002,'Shikha Mishra','HR');
+
+1 row created.
+
+SQL> insert into emp values(1003,'Rajat Singh','Management');
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from emp;
+
+     EMPID EMPNAME              DEPARTMENT
+---------- -------------------- --------------------
+      1001 Shubh Singh          Developement
+      1002 Shikha Mishra        HR
+      1003 Rajat Singh          Management
+
+SQL> select * from empinfo;
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1001 Shubh Singh          Developement
+      1002 Shikha Mishra        HR
+      1003 Rajat Singh          Management
+
+NOW WE UPDATE SALARY OF MAIN TABLE AND DELETE VIEW.
+
+________________________________________________________________________________________________________________
+
+CHECK CONSTRAINT:-
+
+	CHECK CONSTRAINT IS USED FOR VALIDATION IN DATABASE OBJECT.
+	
+WE CREATE A TABLE NAME SPIEMP:-
+
+empid varchar2(10) p.k. must start with 'SPI'.
+empname varchar2(30) empname must be in upprs case.
+country varchar2(5) country must be 'India' or 'Nepal'.
+salary number(6) salary not more than 100000.
+
+
+
+________________________________________________________________________________________________________________
+
+SQL> create table spiemp
+  2  (
+  3  empid varchar2(10) check(empid like 'SPI%'),
+  4  empname varchar2(30) check(empname=upper(empname)),
+  5  country varchar2(5) check(country in ('India','Nepal')),
+  6  salary number(6) check(salary<=100000),
+  7  primary key(empid)
+  8  );
+
+Table created.
+
+SQL> desc spiemp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL VARCHAR2(10)
+ EMPNAME                                            VARCHAR2(30)
+ COUNTRY                                            VARCHAR2(5)
+ SALARY                                             NUMBER(6)
+
+NOW WE CHECK VALIDATION IS WORKING OR NOT:-
+
+insert into spiemp values('1001','BRIJESH','India',50000);
+
+SQL> insert into spiemp values('1001','BRIJESH','India',50000);
+insert into spiemp values('1001','BRIJESH','India',50000)
+*
+ERROR at line 1:
+ORA-02290: check constraint (APPDB2.SYS_C007007) violated
+
+
+SQL> insert into spiemp values('SPI1001','Brijesh','India',50000);
+insert into spiemp values('SPI1001','Brijesh','India',50000)
+*
+ERROR at line 1:
+ORA-02290: check constraint (APPDB2.SYS_C007008) violated
+
+
+SQL> insert into spiemp values('SPI1001','BRIJESH','China',50000);
+insert into spiemp values('SPI1001','BRIJESH','China',50000)
+*
+ERROR at line 1:
+ORA-02290: check constraint (APPDB2.SYS_C007009) violated
+
+
+SQL> insert into spiemp values('SPI1001','BRIJESH','India',999999);
+insert into spiemp values('SPI1001','BRIJESH','India',999999)
+*
+ERROR at line 1:
+ORA-02290: check constraint (APPDB2.SYS_C007010) violated
+
+
+SQL> insert into spiemp values('SPI1001','BRIJESH','India',50000);
+
+1 row created.
+
+SO VALIDATION IS WORKING....
+
+SQL> select * from spiemp;
+
+EMPID      EMPNAME                        COUNT     SALARY
+---------- ------------------------------ ----- ----------
+SPI1001    BRIJESH                        India      50000
+
+
+TABLE NAME SHIPMENT:
+SUPPLIER_NO,part_no,QUANTITY
+s#		p#			qty
+s1		p1(nut)		500
+s1		p2(bolt)	1000
+s1		p3(xyz)		5000
+s2		p1(nut)		200
+s3		p2(bolt)	500
+
+#-> number;
+
+s# can't be primary key and
+p# can't be primary key but
+the combination of s# and p# can make primary key,
+this combination is called candidate key.
+
+
+SQL> create table shipment
+  2  (
+  3  s# varchar2(5),
+  4  p# varchar2(5),
+  5  qty number(5),
+  6  primary key(s#,p#)			// decleration of candidate key //
+  7  );
+
+Table created.
+
+SQL> desc shipment;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ S#                                        NOT NULL VARCHAR2(5)
+ P#                                        NOT NULL VARCHAR2(5)
+ QTY                                                NUMBER(5)
+
+HOW TO MAKE TABLE FROM EXISTING TABLE:-
+
+existing table:- empinfo.
+new table:- empinfo2.
+
+SQL> select * from empinfo;
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1001 Shubh Singh          Developement
+      1002 Shikha Mishra        HR
+      1003 Rajat Singh          Management
+
+SQL> create table empinfo2 as select empid,empname,salary from empinfo;
+
+Table created.
+
+SQL> select * from empinfo2;
+
+     EMPID EMPNAME                  SALARY
+---------- -------------------- ----------
+      1001 Shubh Singh
+      1002 Shikha Mishra
+      1003 Rajat Singh

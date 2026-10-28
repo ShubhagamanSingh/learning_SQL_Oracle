@@ -1,0 +1,361 @@
+Microsoft Windows [Version 10.0.19042.985]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\SHUBHAGAMAM SINGH>sqlplus / as sysdba
+
+SQL*Plus: Release 11.2.0.2.0 Beta on Fri Dec 17 19:41:21 2021
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - Beta
+
+SQL> connect mydb/test;
+Connected.
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+CLIENT                         VIEW
+CLIENT_MASTER                  TABLE
+ORDERS                         TABLE
+PERSONAL                       TABLE
+SALESMAN                       VIEW
+SALESMAN_MASTER                TABLE
+SALES_ORDER                    TABLE
+SALES_ORDER_DETAILS            TABLE
+SPIEMP                         TABLE
+STUDENT                        TABLE
+
+10 rows selected.
+
+SQL> create table staff
+  2  (
+  3  id number(5) primary key,
+  4  name varchar2(30),
+  5  department varchar2(20),
+  6  salary number(6)
+  7  );
+
+Table created.
+
+SQL> set serveroutput on;
+SQL> declare
+  2  id number(5);
+  3  name varchar2(30);
+  4  dep varchar2(20);
+  5  salary number(6);
+  6  begin
+  7  id:=&id;
+  8  name:=&name;
+  9  dep:=&dep;
+ 10  salary:=&salary;
+ 11  dbms_output.put_line('Id='||(id));
+ 12  dbms_output.put_line('Name='||(name));
+ 13  dbms_output.put_line('Department='||(dep));
+ 14  dbms_output.put_line('Salary='||(salary));
+ 15  end;
+ 16  /
+Enter value for id: 1001
+old   7: id:=&id;
+new   7: id:=1001;
+Enter value for name: 'shubh'
+old   8: name:=&name;
+new   8: name:='shubh';
+Enter value for dep: 'hod'
+old   9: dep:=&dep;
+new   9: dep:='hod';
+Enter value for salary: 10000
+old  10: salary:=&salary;
+new  10: salary:=10000;
+Id=1001
+Name=shubh
+Department=hod
+Salary=10000
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  id number(5);
+  3  name varchar2(30);
+  4  dep varchar2(20);
+  5  salary number(6);
+  6  begin
+  7  id:=&id;
+  8  name:=&name;
+  9  dep:=&dep;
+ 10  salary:=&salary;
+ 11  dbms_output.put_line(id);
+ 12  dbms_output.put_line(name);
+ 13  dbms_output.put_line(dep);
+ 14  dbms_output.put_line(salary);
+ 15  end;
+ 16  /
+Enter value for id: 1001
+old   7: id:=&id;
+new   7: id:=1001;
+Enter value for name: 'Shubh'
+old   8: name:=&name;
+new   8: name:='Shubh';
+Enter value for dep: 'HOD'
+old   9: dep:=&dep;
+new   9: dep:='HOD';
+Enter value for salary: 10000
+old  10: salary:=&salary;
+new  10: salary:=10000;
+1001
+Shubh
+HOD
+10000
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  id number(5);
+  3  name varchar2(30);
+  4  dep varchar2(20);
+  5  salary number(6);
+  6  begin
+  7  id:=&id;
+  8  name:=&name;
+  9  dep:=&dep;
+ 10  salary:=&salary;
+ 11  insert into staff values(id,name,dep,salary);
+ 12  end;
+ 13  /
+Enter value for id: 1001
+old   7: id:=&id;
+new   7: id:=1001;
+Enter value for name: 'Shubh'
+old   8: name:=&name;
+new   8: name:='Shubh';
+Enter value for dep: 'Manager'
+old   9: dep:=&dep;
+new   9: dep:='Manager';
+Enter value for salary: 80000
+old  10: salary:=&salary;
+new  10: salary:=80000;
+
+PL/SQL procedure successfully completed.
+
+SQL> select * from staff;
+
+        ID NAME                           DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1001 Shubh                          Manager                   80000
+
+SQL> declare
+  2  r float;
+  3  begin
+  4  r:=&r;
+  5  dbms_output.put_line('Perimeter='||(2*3.14*r));
+  6  dbms_output.put_line('Area='||(3.14*r*r));
+  7  end;
+  8  /
+Enter value for r: 2
+old   4: r:=&r;
+new   4: r:=2;
+Perimeter=12.56
+Area=12.56
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  r float;
+  3  begin
+  4  r:=&r;
+  5  dbms_output.put_line('Perimeter='||(2*3.14*r));
+  6  dbms_output.put_line('Area='||(3.14*r*r));
+  7  end;
+  8  /
+Enter value for r: 5
+old   4: r:=&r;
+new   4: r:=5;
+Perimeter=31.4
+Area=78.5
+
+PL/SQL procedure successfully completed.
+
+declare
+id number(5);
+name varchar2(30);
+dep varchar2(20);
+salary number(6);
+begin
+id:=&id;
+name:=&name;
+dep:=&dep;
+salary:=&salary;
+insert into staff values(id,name,dep,salary);
+end;
+/
+
+declare
+r float;
+begin
+r:=&r;
+dbms_output.put_line('Perimeter='||(2*3.14*r));
+dbms_output.put_line('Area='||(3.14*r*r));
+end;
+/
+
+declare
+a int;
+b int;
+c int;
+begin
+if a>b then
+if a>c then
+dbms_output.put_line('Greater number is: '||(a));
+else
+dbms_output.put_line('Greater number is: '||(c));
+else
+dbms_output.put_line('Greater number is: '||(b));
+end if;
+end;
+/
+
+declare
+a int;
+b int;
+c int;
+begin
+a:=&a;
+b:=&b;
+c:=&c;
+if a>b and b>c then
+dbms_output.put_line('Greater number is:'||(a));
+elsif c>a and a>b then
+dbms_output.put_line('Greater number is:'||(c));
+elsif b>a and a>c then
+dbms_output.put_line('Greater number is:'||(b));
+end if;
+end;
+/
+
+SQL> declare
+  2  a int;
+  3  b int;
+  4  c int;
+  5  begin
+  6  a:=&a;
+  7  b:=&b;
+  8  c:=&c;
+  9  if a>b and b>c then
+ 10  dbms_output.put_line('Greater number is:'||(a));
+ 11  elsif c>a and a>b then
+ 12  dbms_output.put_line('Greater number is:'||(c));
+ 13  elsif b>a and a>c then
+ 14  dbms_output.put_line('Greater number is:'||(b));
+ 15  end if;
+ 16  end;
+ 17  /
+Enter value for a: 3
+old   6: a:=&a;
+new   6: a:=3;
+Enter value for b: 2
+old   7: b:=&b;
+new   7: b:=2;
+Enter value for c: 9
+old   8: c:=&c;
+new   8: c:=9;
+Greater number is:9
+
+PL/SQL procedure successfully completed.
+
+declare
+bs float;
+hr float;
+da float;
+gs float;
+begin
+bs:=&bs;
+if bs<=4000 and bs>=1 then
+hr:=(bs*10/100);
+da:=(bs*50/100);
+elsif bs<=8000 and bs>4000 then
+hr:=(bs*20/100);
+da:=(bs*60/100);
+elsif bs<=12000 and bs>8000 then
+hr:=(bs*25/100);
+da:=(bs*70/100);
+elsif bs>=12000 then
+hr:=(bs*30/100);
+da:=(bs*80/100);
+end if;
+gs:=(bs+hr+da);
+dbms_output.put_line('Gross Salary is:'||(gs));
+end;
+/
+
+
+SQL> declare
+  2  bs float;
+  3  hr float;
+  4  da float;
+  5  gs float;
+  6  begin
+  7  bs:=&bs;
+  8  if bs<=4000 and bs>=1 then
+  9  hr:=(bs*10/100);
+ 10  da:=(bs*50/100);
+ 11  elsif bs<=8000 and bs>4000 then
+ 12  hr:=(bs*20/100);
+ 13  da:=(bs*60/100);
+ 14  elsif bs<=12000 and bs>8000 then
+ 15  hr:=(bs*25/100);
+ 16  da:=(bs*70/100);
+ 17  elsif bs>=12000 then
+ 18  hr:=(bs*30/100);
+ 19  da:=(bs*80/100);
+ 20  end if;
+ 21  gs:=(bs+hr+da);
+ 22  dbms_output.put_line('Gross Salary is:'||(gs));
+ 23  end;
+ 24  /
+Enter value for bs: 15000
+old   7: bs:=&bs;
+new   7: bs:=15000;
+Gross Salary is:31500
+
+PL/SQL procedure successfully completed.
+
+declare
+unit float;
+bill float;
+begin
+unit:=&unit;
+if unit<=150 and unit>=1 then
+bill:=(unit*2.40);
+elsif unit<=300 and unit>=151 then
+bill:=((150*2.40)+(unit-150)*3.0);
+elsif unit<=150 and unit>=1 then
+bill:=((150*2.40)+(150*3.0)+(unit-300)*3.20);
+end if;
+dbms_output.put_line('Total Bill to Pay is:'||(bill));
+end;
+/
+
+
+SQL> declare
+  2  unit float;
+  3  bill float;
+  4  begin
+  5  unit:=&unit;
+  6  if unit<=150 and unit>=1 then
+  7  bill:=(unit*2.40);
+  8  elsif unit<=300 and unit>=151 then
+  9  bill:=((150*2.40)+(unit-150)*3.0);
+ 10  elsif unit<=150 and unit>=1 then
+ 11  bill:=((150*2.40)+(150*3.0)+(unit-300)*3.20);
+ 12  end if;
+ 13  dbms_output.put_line('Total Bill to Pay is:'||(bill));
+ 14  end;
+ 15  /
+Enter value for unit: 200
+old   5: unit:=&unit;
+new   5: unit:=200;
+Total Bill to Pay is:510
+
+PL/SQL procedure successfully completed.

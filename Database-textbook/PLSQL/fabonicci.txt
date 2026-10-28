@@ -1,0 +1,59 @@
+FABONICCI SERIES FOR N TERMS:-
+
+declare
+a int;
+b int;
+c int;
+n int;
+begin
+a:=0;
+b:=1;
+n:=&n;
+dbms_output.put_line(a);
+dbms_output.put_line(b);
+for i in 1..n
+loop
+c:=(a+b);
+dbms_output.put_line(c);
+a:=b;
+b:=c;
+end loop;
+end;
+/
+SQL> set serveroutput on;
+SQL> declare
+  2  a int;
+  3  b int;
+  4  c int;
+  5  n int;
+  6  begin
+  7  a:=0;
+  8  b:=1;
+  9  n:=&n;
+ 10  dbms_output.put_line(a);
+ 11  dbms_output.put_line(b);
+ 12  for i in 1..n
+ 13  loop
+ 14  c:=(a+b);
+ 15  dbms_output.put_line(c);
+ 16  a:=b;
+ 17  b:=c;
+ 18  end loop;
+ 19  end;
+ 20  /
+Enter value for n: 9
+old   9: n:=&n;
+new   9: n:=9;
+0
+1
+1
+2
+3
+5
+8
+13
+21
+34
+55
+
+PL/SQL procedure successfully completed.

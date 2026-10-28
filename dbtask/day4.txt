@@ -1,0 +1,174 @@
+Microsoft Windows [Version 10.0.19042.985]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\SHUBHAGAMAM SINGH>sqlplus / as sysdba
+
+SQL*Plus: Release 11.2.0.2.0 Beta on Fri Dec 17 01:07:07 2021
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - Beta
+
+SQL> connect mydb/test;
+Connected.
+SQL> create table client_master
+  2  (
+  3  client_no varchar2(6) check(client_no like 'C%'),
+  4  name varchar2(20) check(name=upper(name)),
+  5  city varchar2(15) check(city in ('MUMBAI','DELHI','MADRAS','CALCUTTA')),
+  6  state varchar2(15),
+  7  bal_due number(10),
+  8  primary key(client_no)
+  9  );
+
+Table created.
+
+SQL> create table sales_order_details
+  2  (
+  3  detlorder_no varchar2(6) primary key,
+  4  product_no varchar2(6),
+  5  qty_ordered number(8),
+  6  qty_disp number(8),
+  7  product_rate number(8)
+  8  );
+
+Table created.
+
+SQL> create table sales_order
+  2  (
+  3  order_no varchar2(6),
+  4  client_no varchar2(6),
+  5  order_date date,
+  6  detlorder_no varchar2(6),
+  7  foreign key(detlorder_no) references sales_order_details(detlorder_no)
+  8  );
+
+Table created.
+
+SQL> create table salesman_master
+  2  (
+  3  salesman_no varchar2(6) check(salesman_no like 'S%'),
+  4  name varchar2(20) check(name=upper(name)),
+  5  city varchar2(15) check(city in ('MUMBAI','DELHI','MADRAS','CALCUTTA')),
+  6  state varchar2(15),
+  7  bal_due number(10),
+  8  primary key(salesman_no)
+  9  );
+
+Table created.
+
+SQL> create view client as select client_no,name,city from client_master;
+
+View created.
+
+SQL> create view salesman as select salesman_no,name,city from salesman_master;
+
+View created.
+
+
+SQL> insert into client values('C00001','ASHOK MEHRA','MUMBAI');
+
+1 row created.
+
+SQL> insert into client values('C00002','VISHAL PARIKH','DELHI');
+
+1 row created.
+
+SQL> insert into client values('C00003','AJEY MEHRA','MUMBAI');
+
+1 row created.
+
+SQL> insert into client values('C00004','ROHIT ROY','CALCUTTA');
+
+1 row created.
+
+SQL> insert into client values('C00005','NALINI DEEWAN','MUMBAI');
+
+1 row created.
+
+SQL> insert into client values('C00006','PREM IYER','DELHI');
+
+1 row created.
+
+SQL> insert into client values('C00007','RAHUL DESAI','MADRAS');
+
+1 row created.
+
+SQL> insert into salesman values('S00001','MANISH PATEL','MUMBAI');
+
+1 row created.
+
+SQL> insert into salesman values('S00002','KIRAN DIXIT','DELHI');
+
+1 row created.
+
+SQL> insert into salesman values('S00003','NITESH KHANNA','MUMBAI');
+
+1 row created.
+
+SQL> insert into salesman values('S00004','MAHESH PATEL','CALCUTTA');
+
+1 row created.
+
+SQL> select * from client;
+
+CLIENT NAME                 CITY
+------ -------------------- ---------------
+C00001 ASHOK MEHRA          MUMBAI
+C00002 VISHAL PARIKH        DELHI
+C00003 AJEY MEHRA           MUMBAI
+C00004 ROHIT ROY            CALCUTTA
+C00005 NALINI DEEWAN        MUMBAI
+C00006 PREM IYER            DELHI
+C00007 RAHUL DESAI          MADRAS
+
+7 rows selected.
+
+SQL> select * from salesman;
+
+SALESM NAME                 CITY
+------ -------------------- ---------------
+S00001 MANISH PATEL         MUMBAI
+S00002 KIRAN DIXIT          DELHI
+S00003 NITESH KHANNA        MUMBAI
+S00004 MAHESH PATEL         CALCUTTA
+
+SQL> select * from client_master;
+
+CLIENT NAME                 CITY            STATE              BAL_DUE
+------ -------------------- --------------- --------------- ----------
+C00001 ASHOK MEHRA          MUMBAI
+C00002 VISHAL PARIKH        DELHI
+C00003 AJEY MEHRA           MUMBAI
+C00004 ROHIT ROY            CALCUTTA
+C00005 NALINI DEEWAN        MUMBAI
+C00006 PREM IYER            DELHI
+C00007 RAHUL DESAI          MADRAS
+
+7 rows selected.
+
+SQL> select * from salesman_master;
+
+SALESM NAME                 CITY            STATE              BAL_DUE
+------ -------------------- --------------- --------------- ----------
+S00001 MANISH PATEL         MUMBAI
+S00002 KIRAN DIXIT          DELHI
+S00003 NITESH KHANNA        MUMBAI
+S00004 MAHESH PATEL         CALCUTTA
+
+SQL> select * from client where city='MUMBAI';
+
+CLIENT NAME                 CITY
+------ -------------------- ---------------
+C00001 ASHOK MEHRA          MUMBAI
+C00003 AJEY MEHRA           MUMBAI
+C00005 NALINI DEEWAN        MUMBAI
+
+SQL> select * from salesman where city='MUMBAI';
+
+SALESM NAME                 CITY
+------ -------------------- ---------------
+S00001 MANISH PATEL         MUMBAI
+S00003 NITESH KHANNA        MUMBAI

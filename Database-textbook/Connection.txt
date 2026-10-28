@@ -1,0 +1,923 @@
+OPEN COMMAND PROMPT [CMD]:- 
+___________________________
+
+C:\>sqlplus / as sysdba;
+
+
+SQL*Plus: Release 11.2.0.2.0 Beta on Mon Dec 13 15:00:33 2021
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - Beta
+
+SQL>
+
+____________________________________________________________________________________
+																					|
+USE CREATE COMMAND TO CREATE NEW DATABASE USER:-									|
+																					|
+SYNTAX:- 																			|
+																					|
+		create user <user_name> identified by <passsword>;							|
+																					|
+		E.g.:-  create user appdb2 identified by test;//test is passsword.			|
+																					|
+____________________________________________________________________________________|
+
+SQL> create user appdb2 identified by test;
+User created.
+
+____________________________________________________________________________________
+																					|
+USE OF GRANT COMMAND TO GIVE RIGHTS TO DATABASE USER:-								|
+																					|
+SYNTAX:-																			|
+																					|
+		grant <rights> to <username>;												|
+																					|
+		E.g.:- grant dba to appdb2;													|
+																					|
+____________________________________________________________________________________|
+
+SQL> grant dba to appdb2;
+Grant succeeded.
+____________________________________________________________________________________
+																					|
+CONNNECT DATABASE USER:-															|
+																					|
+SYNTAX:-																			|
+																					|
+		connect <user_name>/<passsword>;											|
+																					|
+		E.g.:- connect appdb2/test;													|
+																					|
+____________________________________________________________________________________|
+
+SQL>connect appdb2/test;
+Connected.
+
+__________________________________________________________________________________________________
+																								  |
+USE OF CREATE COMMAND TO CREATE A NEW TABLE:-													  |
+																								  | 
+	TABLE IS THE COLLECTION OF ROWS AND COLUMNS.THE COLUMNS ARE CALLED ATTRIBUTES 				  | 
+	AND ROWS ARE CALLED TUPLES. 																  |
+																								  |
+STNTAX:-																						  |
+																								  |
+		create table <table_name>																  |
+		(																						  |
+		 <column_name> <datatype>,<column_name> <datatype>,<column_name> <datatype> 			  |
+		);																						  |
+																								  |
+		E.g.:- create table employee															  |
+		(																						  |
+		empid number(5) primary key,empname varchar2(30),department varchar2(20),salary number(6) |
+		);																						  |
+__________________________________________________________________________________________________|
+
+SQL>create table employee
+  2	(
+  3 empid number(5) primary key,
+  4 empname varchar2(30),
+  5 department varchar2(20),
+  6 salary number(6)
+  7 );
+
+Table Created.
+
+________________________________________________________________________________________________
+																								|
+COMMAND TO VIEW TABLE STRUCTURE:- 																|
+																								|
+SYNTAX:-																						|
+																								|
+		desc <table_name>;																		|
+																								|
+		E.g.:- desc employee;																	|
+																								|
+________________________________________________________________________________________________|
+
+SQL>desc employee;	
+
+<Shows structure>
+
+________________________________________________________________________________________________
+																								|
+USE OF INSERT COMMAND:- 																		|
+																								|
+	THE INSERT COMMAND IS USED TO INSERT RECORDS INTO THE DATABASE OBJECT.						|
+																								|
+SYNTAX:-																						|
+																								|
+		insert into <table_name> values(<value1>,<value2>,<value3>);// single insertion.		|
+																								|
+		E.g.:-																					|
+																								|
+		insert into employee values(101,'Priya','HR',35000);									|
+		insert into employee values(1002,'Rajat','Sales',25000);								|
+		insert into employee values(1003,'Disha','Management',50000);							|
+		insert into employee values(1004,'Brajesh','Developement',55000);						|
+________________________________________________________________________________________________|
+
+SQL>insert into employee values(101,'Priya','HR',35000);
+
+1 row created.
+
+SQL>insert into employee values(1002,'Rajat','Sales',25000);
+
+1 row created.
+
+SQL>insert into employee values(1003,'Disha','Management',50000);
+
+1 row created.
+
+SQL>insert into employee values(1004,'Brajesh','Developement',55000);
+
+1 row created.
+
+________________________________________________________________________________________________
+																								|
+USE OF COMMIT COMMAND:- 																		|
+																								|
+		IT IS USED TO SAVE ALL INSERTIONS.														|
+																								|
+		just type commit;																		|
+________________________________________________________________________________________________|
+
+SQL>commit;
+
+commit complete.
+
+________________________________________________________________________________________________
+																								|
+USE OF SELECT COMMAND:- 																		|
+																								|
+		IT IS USED TO VIEW RECORDS FROM DATABASE OBJECT.										|
+																								|
+SYNTAX:- 																						|
+																								|
+		select * from <table_name>;																|
+																								|
+		select <column_name>, <column_name>, column_name from <table_name>;						|
+																								|	
+		E.g.:- select * from employee;															|
+																								|
+		select empid, empname, salary from employee;											|
+________________________________________________________________________________________________|
+
+SQL>select * from employee;
+
+     EMPID EMPNAME                        DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1001 Priya                          HR                        35000
+      1002 Rajesh                         Sales                     25000
+      1003 Disha                          Management                50000
+      1004 Brajesh                        Developement              55000
+
+SQL>select empid, empname, salary from employee;
+
+     EMPID EMPNAME                         SALARY
+---------- ------------------------------  ----------
+      1001 Priya                                40000
+      1002 Rajesh                               25000
+      1003 Disha                                50000
+      1004 Brajesh                              55000
+
+_______________________________________________________________________________________________
+																								|
+USE OF WHERE CLAUSE:- 																			|
+																								|
+		IT IS USED TO SPECIFY CONDITION IN SQL STATEMENT.										|
+																								|
+SYNTAX:- 																						|
+																								|
+		select * from <table_name> where <value> = <record of value>;							|
+																								|
+		select <column_name> from <table_name> where <value> = <record of value>;				|
+																								|
+		E.g.:- select * from employee where empid=1001;											|
+																								|
+		select empid, empname, salary from employee where empid=1001;							|
+																								|
+________________________________________________________________________________________________|
+
+SQL>select * from employee where empid=1001;
+
+     EMPID EMPNAME                        DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1001 Priya                          HR                        35000
+
+
+SQL>select empid, empname, salary from employee where empid=1001;
+
+     EMPID EMPNAME                        SALARY
+---------- ------------------------------ ----------
+      1001 Priya                               35000
+
+
+____________________________________________________________________________________________
+																							|
+USE OF DELETE COMMAND:- 																	|
+																							|
+		DELETE COMMAND IS USED TO DELETE RECORD FROM DATABASE OBJECT.						|
+																							|
+SYNTAX:- 																					|
+																							|
+		delete from <table_name> where <condition>;											|
+																							|
+		E.g.:-																				|
+																							|
+		delete from employee where empid==1001;												|
+																							|
+____________________________________________________________________________________________|
+
+SQL>delete from employee where empid==1001;
+
+1 row deleted.
+
+     EMPID EMPNAME                        DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1002 Rajesh                         Sales                     25000
+      1003 Disha                          Management                50000
+      1004 Brajesh                        Developement              55000
+
+____________________________________________________________________________________________
+																							|
+USE OF ROLLBACK COMMAND:- 																	|
+																							|
+		to undo the command.																|
+																							|
+		just type rollback;																	|
+																							|
+____________________________________________________________________________________________|
+
+SQL>rollback;
+
+Rollback complete.
+
+<<after commit rollback is powerless specially if deleted before commit>>
+
+     EMPID EMPNAME                        DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1001 Priya                          HR                        35000
+      1002 Rajesh                         Sales                     25000
+      1003 Disha                          Management                50000
+      1004 Brajesh                        Developement              55000
+____________________________________________________________________________________________
+																							|
+USE OF UPDATE COMMAND:- 																	|
+																							|
+		UPDATE COMMAND IS USED TO MODIFY RECORDS FROM DATABASE OBJECT.						|
+																							|
+SYNTAX:-																					|
+																							|
+		update <table_name> set <column_name>=<value>,										|
+		<column_name>=<value> where <condition>;											|
+																							|
+		E.g.:- update employee set salary=40000 where empid=1001;							|
+____________________________________________________________________________________________|
+
+SQL>update employee set salary=40000 where empid=1001;
+
+1 row updated.
+
+     EMPID EMPNAME                        DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1001 Priya                          HR                        40000
+      1002 Rajesh                         Sales                     25000
+      1003 Disha                          Management                50000
+      1004 Brajesh                        Developement              55000
+	  
+____________________________________________________________________	  
+																	|
+SQL>clear screen 													|
+																	|
+		<<this will clear the screen.>>								|
+																	|
+____________________________________________________________________|
+
+____________________________________________________________________________________________
+																							|
+select * from tab;																			|
+																							|
+	to select all tables.																	|
+____________________________________________________________________________________________|
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+EMPLOYEE                       TABLE
+
+____________________________________________________________________________________________
+																							|
+USE OF TRUNCATE COMMAND:- 																	|
+																							|
+		TRUNCATE COMMAND IS USED TO DELETE ALL DATA FROM DATABASE OBJECT.					|
+		YOU CAN'T ROLLBACK TRUNCATE COMMAND.												|
+																							|
+SYNTAX:-																					|
+																							|
+		truncate table <table_name>;														|	
+																							|
+		E.g.:- truncate table employee;														|
+____________________________________________________________________________________________|	  
+
+SQL> truncate table employee;
+
+Table truncated.
+
+SQL> select * from employee;
+
+no rows selected
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL NUMBER(5)
+ EMPNAME                                            VARCHAR2(30)
+ DEPARTMENT                                         VARCHAR2(20)
+ SALARY                                             NUMBER(8)
+
+____________________________________________________________________________________________
+																							|
+USE OF DROP COMMAND:- 																		|
+																							|
+		DROP COMMAND IS USED TO DELETE DATABASE OBJECT.										|
+		YOU CAN'T ROLLBACK TRUNCATE COMMAND.												|
+																							|
+SYNTAX:-																					|
+																							|
+		drop table <table_name>;															|	
+																							|
+		E.g.:- drop table employee;															|
+____________________________________________________________________________________________|	  
+
+SQL> drop table employee;
+
+Table dropped.
+
+SQL> desc employee;
+ERROR:
+ORA-04043: object employee does not exist
+
+NOW WE CREAT A TABLE LOGIN:-
+--------------------------------
+
+SQL> create table login
+  2  (
+  3  userid varchar2(20),
+  4  password varchar2(20)
+  5  );
+
+Table created.
+
+SQL> desc login;
+
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ USERID                                             VARCHAR2(20)
+ PASSWORD                                           VARCHAR2(20)
+
+____________________________________________________________________________________________
+																							|
+USE OF ALTER COMMAND :-																		|
+																							|
+	IT IS USED TO MODIFY DATABASE OBJECT.													|
+																							|
+SYNTAX:-																					|
+																							|
+		MODIFY COLUMN:-																		|
+																							|
+			alter table <table_name> modify <column_name> <datatype> <primary key/other>;	|
+																							|
+			E.g.:- alter table login modify userid varchar2(20) primary key;				|
+																							|
+		ADD A NEW COLUMN:-																	|
+																							|
+			alter table <table_name> add <column_name> <datatype>..<..>;					|
+																							|
+			E.g.:- alter table login add user_type varchar2(20);							|
+																							|
+		DELETE A COLUMN:-																	|
+																							|
+			alter table <table_name> drop column <column_name>;								|
+																							|
+			E.g.:- alter table login drop column user_type;									|
+																							|
+		RENAME THE COLUMN:-																	|
+																							|
+			alter table <table_name> rename column <old column_name> to <new column_name>;	|
+																							|
+			E.g.:- alter table login rename column passsword to passwd;						|
+____________________________________________________________________________________________|																			
+MODIFY:-
+----------
+ 
+SQL> alter table login modify userid varchar2(20) primary key;
+
+Table altered.
+
+
+SQL> desc login;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ USERID                                    NOT NULL VARCHAR2(20)
+ PASSWORD                                           VARCHAR2(20)
+ 
+ 
+
+ADD:-
+---------
+
+SQL> alter table login add user_type varchar2(20);
+
+Table altered.
+
+SQL> desc login;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ USERID                                    NOT NULL VARCHAR2(20)
+ PASSWORD                                           VARCHAR2(20)
+ USER_TYPE                                          VARCHAR2(20)
+
+
+
+DROP:-
+------------
+
+SQL> alter table login drop column user_type;
+
+Table altered.
+
+SQL> desc login;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ USERID                                    NOT NULL VARCHAR2(20)
+ PASSWORD                                           VARCHAR2(20)
+
+
+
+RENAME:-
+--------------
+
+SQL> alter table login rename column password to passwd;
+
+Table altered.
+
+SQL> desc login;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ USERID                                    NOT NULL VARCHAR2(20)
+ PASSWD                                             VARCHAR2(20)
+
+
+____________________________________________________________________________________________
+																							|
+USE OF RENAME COMMAND:- 																	|
+																							|
+		TO RENAME DATABASE OBJECT.															|
+																							|
+SYNTAX:- 																					|
+																							|
+		rename <old table_name> to <new table_name>;										|
+																							|
+		E.g.:- rename login to logininfo;													|
+																							|
+____________________________________________________________________________________________|	
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+LOGIN                          TABLE
+
+SQL> rename login to logininfo;
+
+Table renamed.
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+LOGININFO                      TABLE
+
+____________________________________________________________________________________________
+																							|
+JOIN OPERATION :- 
+
+		IF YOU WANT TO SELECT DATA FROM TWO TABLES THEN CAN YOU PERFORM JOIN OPERATION.
+		FOR JOIN OPERATION ATLEAST ONE FIELD MUST BE COMMON IN BOTH TABLES.
+
+	TABLES:-
+	
+		table_1---> col_11(P.K.), col_12;
+		table_2---> col_21(P.K.), col_22, col_11(F.K.);
+
+	SYNTAX:-
+	
+		select col_12 fom table_1 and col_22 from table_2 baised on col_11:-
+		
+		select col_12, col_22 from table_1, table_2 where table_1.col_11=table_2.col_11;
+		
+		E.g.:- select empname, pname from employee, product where employee.empid=product.empid;
+
+____________________________________________________________________________________________|	
+
+//
+	employee--->empid(P.K.), empname;
+	product--->pid(P.K.), pname, empid(F.K.); //
+
+SQL> create table employee
+  2  (
+  3  empid number(5) primary key,
+  4  empname varchar2(20)
+  5  );
+
+Table created.
+
+SQL> create table product
+  2  (
+  3  pid number(5) primary key,
+  4  pname varchar2(20),
+  5  empid number(5),
+  6  foreign key(empid) references employee(empid)  //   making (empid as) foreign key  //
+  7  );
+
+Table created.
+
+SQL> desc employee;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL NUMBER(5)
+ EMPNAME                                            VARCHAR2(20)
+
+SQL> desc product;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ PID                                       NOT NULL NUMBER(5)
+ PNAME                                              VARCHAR2(20)
+ EMPID                                              NUMBER(5)
+ 
+ 
+ 
+IMP QUERY:-
+--------------
+ 
+ 
+SQL> insert into product values(105,'Projector',NULL);
+
+1 row created.
+
+SQL> insert into product values(106,'Tablet',NULL);
+
+1 row created.
+ 
+ 
+ 
+AFTER INSERTION:-
+-----------------------
+ 
+ SQL> select * from product;
+
+       PID PNAME                     EMPID
+---------- -------------------- ----------
+       101 Printer                    1001
+       102 Scanner                    1002
+       103 Plotter                    1002
+       104 Laptop                     1003
+       105 Projector
+       106 Tablet
+
+6 rows selected.
+
+SQL> select * from employee;
+
+     EMPID EMPNAME
+---------- --------------------
+      1001 John
+      1002 Brown
+      1003 Green
+      1004 Lily
+	  
+JOIN:-
+---------------
+
+SQL> select empname, pname from employee, product where employee.empid=product.empid;
+
+EMPNAME              PNAME
+-------------------- --------------------
+John                 Printer
+Brown                Scanner
+Brown                Plotter
+Green                Laptop
+
+
+____________________________________________________________________________________________
+																							|
+LEFT JOIN OPERATION :- 
+
+		WHEN YOU PERFOEM LEFT JOIN OPERATION, THEN ALL RECORD OF LEFT TABLE ARE DISPLAYED
+		AND MATCHING RECORD OF RIGHT TABLE ARE DISPLAYED.
+		
+TABLES:-
+	
+		table_1---> col_11(P.K.), col_12;
+		table_2---> col_21(P.K.), col_22, col_11(F.K.);
+
+SYNTAX:-
+
+		select col_12, col_22 from table_1 left join table_2 on table_1.col_11=table_2.col_11;
+		
+		E.g.:- select empname, pname from employee left join product on employee.empid=product.empid;
+		
+____________________________________________________________________________________________|	
+
+SQL> select empname, pname from employee left join product on employee.empid=product.empid;
+
+EMPNAME              PNAME
+-------------------- --------------------
+John                 Printer
+Brown                Scanner
+Brown                Plotter
+Green                Laptop
+Lily
+
+
+____________________________________________________________________________________________
+																							|
+RIGHT JOIN OPERATION :- 
+
+		WHEN YOU PERFOEM RIGHT JOIN OPERATION, THEN ALL RECORD OF RIGHT TABLE ARE DISPLAYED
+		AND MATCHING RECORD OF LEFT TABLE ARE DISPLAYED.
+		
+TABLES:-
+	
+		table_1---> col_11(P.K.), col_12;
+		table_2---> col_21(P.K.), col_22, col_11(F.K.);
+
+SYNTAX:-
+
+		select col_12, col_22 from table_1 right join table_2 on table_1.col_11=table_2.col_11;
+		
+		E.g.:- select empname, pname from employee right join product on employee.empid=product.empid;
+		
+____________________________________________________________________________________________|	
+
+
+SQL> select empname, pname from employee right join product on employee.empid=product.empid;
+
+EMPNAME              PNAME
+-------------------- --------------------
+John                 Printer
+Brown                Plotter
+Brown                Scanner
+Green                Laptop
+                     Projector
+MAKING A NEW TABLE(EMPINFO):-
+
+SQL> select * from empinfo;
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1001 Ravi Singh           Develeopement             50000
+      1002 Priya Singh          H.R.                      65000
+      1003 Ajeet Kumar          Management                80000
+      1004 Brajesh Mishra       Developement              55000
+
+_______________________________________________________________________________________________
+
+ORDER BY:-
+
+		ORDER BY IS USED TO ARRANGE RECORD IN SHORTED ORDER.
+		
+		ORDER:-
+		ASSENDING - BY DEFAULT
+		DESCENDING - USE DESC AT LAST OF QUERY.
+		
+SYNTAX:- 
+			DEFAULT ORDER:-
+			select * from <table_name> order by <column_name>; //a->z or 1->100 order.//
+			CHANGE ORDER:-
+			select * from <table_name> order by <column_name> desc; // reverse order.//
+			
+_______________________________________________________________________________________________ 
+
+SQL> select * from empinfo order by empname;
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1003 Ajeet Kumar          Management                80000
+      1004 Brajesh Mishra       Developement              55000
+      1002 Priya Singh          H.R.                      65000
+      1001 Ravi Singh           Develeopement             50000
+
+
+SQL> select * from empinfo order by salary;
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1001 Ravi Singh           Develeopement             50000
+      1004 Brajesh Mishra       Developement              55000
+      1002 Priya Singh          H.R.                      65000
+      1003 Ajeet Kumar          Management                80000
+
+CHANGE ORDER:-
+-----------------------
+
+SQL> select * from empinfo order by empname desc;
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1001 Ravi Singh           Developement              50000
+      1002 Priya Singh          H.R.                      65000
+      1004 Brajesh Mishra       Developement              55000
+      1003 Ajeet Kumar          Management                80000
+
+
+____________________________________________________________________________________
+
+SQL OPERATORS:-
+
+	>			GREATER THAN.
+	<			LESS THAN.
+	>=			GREATER THAN OR EQUAL TO.
+	<=			LESS THAN OR EQUAL TO.
+	=			EQUAL TO.
+	<>			NOT EQUAL TO.
+	like		USED FOR PATTERN MATCHING.
+	in			CHECK VALUES IN GIVEN VALUES.
+	between		CHECK VALUE IN GIVEN RANGE.
+____________________________________________________________________________________
+
+= :-
+
+SQL> select * from empinfo where empid=1001;
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1001 Ravi Singh           Developement              50000
+
+> :-
+
+SQL> select * from empinfo where salary>50000;
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1002 Priya Singh          H.R.                      65000
+      1003 Ajeet Kumar          Management                80000
+      1004 Brajesh Mishra       Developement              55000
+
+< :-
+
+SQL> select * from empinfo where salary<65000;
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1001 Ravi Singh           Developement              50000
+      1004 Brajesh Mishra       Developement              55000
+
+
+>= :-
+
+SQL> select * from empinfo where salary>=65000;
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1002 Priya Singh          H.R.                      65000
+      1003 Ajeet Kumar          Management                80000
+
+like :-
+------------------
+
+SQL> select * from empinfo where empname like '%Singh';  // % mean Before 'Singh' somthing is written. //
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1001 Ravi Singh           Developement              50000
+      1002 Priya Singh          H.R.                      65000
+
+SQL> select * from empinfo where empname like 'A%';
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1003 Ajeet Kumar          Management                80000
+
+SQL> select * from empinfo where empname like '%a%';
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1001 Ravi Singh           Developement              50000
+      1002 Priya Singh          H.R.                      65000
+      1003 Ajeet Kumar          Management                80000
+      1004 Brajesh Mishra       Developement              55000
+
+SQL> select * from empinfo where empname like '%s%';
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1004 Brajesh Mishra       Developement              55000
+
+________________________________________________________________________________________________
+
+SQL FUNCTIONS:- ALL FUNCTIONS OF SQL WORKS WITH SELECT.
+
+		sum():- 
+			sum function is used to find sum of values of given column.
+			select sum(salary) from empinfo;
+		
+		max():- 
+			max function find the maximum value of given column.
+			select max(salary) "Maximum Salary" from empinfo;
+		
+		min():- 
+			min function find the minimum value of given column.
+			select min(salary) "Minimum Salary" from empinfo;
+			
+		avg():- 
+			avg function finds the average value of given column.
+			select avg(salary) "Average Salary" from empinfo;
+			
+		count():-
+			count function is used to count the rows in the table.
+			select count(salary) "Total Rows" from empinfo;
+			select count(*) "Number of Rows" from empinfo;
+			
+		nested query:-
+			
+			select * from empinfo where salary=(select max(salary) from empinfo); //nested query //
+											   |								|
+											    --------------------------------
+																|
+															inner query
+________________________________________________________________________________________________
+
+SQL> select sum(salary) from empinfo;
+
+SUM(SALARY)
+-----------
+     250000
+	 
+
+SQL> select sum(salary) "Total Salary" from empinfo;  //Change column name//
+
+Total Salary
+------------
+      250000
+	  
+
+SQL> select max(salary) "Maximum Salary" from empinfo;
+
+Maximum Salary
+--------------
+         80000
+		 
+		 
+SQL> select min(salary) "Minimum Salary" from empinfo;
+
+Minimum Salary
+--------------
+         50000
+		 
+SQL> select avg(salary) "Average Salary" from empinfo;
+
+Average Salary
+--------------
+         62500
+		 
+SQL> select count(salary) "Total Rows" from empinfo;
+
+Total Rows
+----------
+         4
+
+
+SQL> select count(*) "Number of Rows" from empinfo;
+
+Number of Rows
+--------------
+             4
+
+NESTED QUERY:-
+--------------------
+
+SQL> select * from empinfo where salary=(select max(salary) from empinfo);
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1003 Ajeet Kumar          Management                80000
+
+________________________________________________________________________________________________
+																								|
+VIEW:-
+	
+	VIEW IS A LOGICAL TABLE WHICH IS CREATED BY ANOTHER TABLE.
+	IF YOU HAVE A TABLE WITH SOME IMPORTANT FIELDS AND SOME UNIMPORTENT FIELDS, 
+	SO YOU CAN CREATE A VIEW OF UNIMPORTANT FIELDS AND ASSIGN THAT VIEW TO AN OPERATOR.
+	WHEN OPERATOR INSERT RECORDS IN VIEW THEN MAIN TABLE WILL ALSO AFFECTED.
+	
+	
+________________________________________________________________________________________________|

@@ -1,0 +1,33 @@
+											DBMS
+										_____________
+										
+
+01. what is DBMS?
+02. what is database user?
+03. what is DBA?
+04. what is SQL?
+05. What is difference between alter and update command?
+06. What is difference between delete, truncate and drop command?
+07. What is Primary key?
+	-> It is a field in a table which is used to identify the records uniquely.It is atomic and not NULL.
+08. What is Foreign key?
+	-> It is a field in a table which works as primary key in another table.There can be more than one foreign key in a table.
+09. What is use of alter command how many types we can use alter command?
+10. what is join operation?
+11. What is nested querry?
+	-> when we use a query inside another query is called nested query.
+12. What is view? What are importance of view?
+13. What is check constraint?
+14. What is NOT NULL constraint?
+15. What is Intrigity?
+16. What are Intrigity rules.// 2 types -> automic and referencial.
+17. COMPOSIT KEY:- 
+	-> IF YOU MAKE PRIMARY KEY BY COMBINING TWO OR MOST COLUMN, THEN RESULTANT KEY IS CALLED COMPOSIT KEY OR CANDIDATE KEY.
+18. what is pl/sql?
+19. what are features of pl/sql?
+20. write syntax for pl/sql blocks.
+21. is pl/sql os independent?
+22. what is diffrence between commit and roolback?
+23. what is difference between unique key and primary key?
+24. what is NOT NULL constraint?
+25. write a query to create foreign key.

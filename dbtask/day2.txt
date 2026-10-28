@@ -1,0 +1,111 @@
+SQL> connect mydb/test;
+Connected.
+SQL> select * from customer;
+
+   CUST_ID CUST_NAME                      CONTACTNO
+---------- ------------------------------ ---------------
+EMAILADDRESS
+------------------------------
+      1001 Ravi                           9453318798
+ravi@gmail.com
+
+      1002 Priya                          9936652039
+priya@gmail.com
+
+      1003 Rohit                          7080102008
+rohit@gmail.com
+
+
+   CUST_ID CUST_NAME                      CONTACTNO
+---------- ------------------------------ ---------------
+EMAILADDRESS
+------------------------------
+      1004 Disha                          7080102006
+disha@gmail.com
+
+
+SQL> truncate table customer;
+
+Table truncated.
+
+SQL> drop table customer;
+
+Table dropped.
+
+SQL> create table student
+  2  (
+  3  rollno number(5),
+  4  name varchar2(50),
+  5  contactno varchar2(12),
+  6  emailaddress varchar2(50)
+  7  );
+
+Table created.
+
+SQL> desc student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLLNO                                             NUMBER(5)
+ NAME                                               VARCHAR2(50)
+ CONTACTNO                                          VARCHAR2(12)
+ EMAILADDRESS                                       VARCHAR2(50)
+
+SQL> alter table student modify rollno number(5) primary key;
+
+Table altered.
+
+SQL> alter table student add password varchar2(20);
+
+Table altered.
+
+SQL> alter table student rename column name to studentname;
+
+Table altered.
+
+SQL> alter table student modify contactno varchar2(11);
+
+Table altered.
+
+SQL> desc student;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ROLLNO                                    NOT NULL NUMBER(5)
+ STUDENTNAME                                        VARCHAR2(50)
+ CONTACTNO                                          VARCHAR2(11)
+ EMAILADDRESS                                       VARCHAR2(50)
+ PASSWORD                                           VARCHAR2(20)
+
+SQL> create table personal
+  2  (
+  3  id number(5) primary key,
+  4  name varchar2(30)
+  5  );
+
+Table created.
+
+SQL> create table orders
+  2  (
+  3  oid number(5) primary key,
+  4  oname varchar2(20),
+  5  id number(5),
+  6  foreign key(id) references personal(id)
+  7  );
+
+Table created.
+
+SQL> desc personal;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ ID                                        NOT NULL NUMBER(5)
+ NAME                                               VARCHAR2(30)
+
+SQL> desc orders;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ OID                                       NOT NULL NUMBER(5)
+ ONAME                                              VARCHAR2(20)
+ ID                                                 NUMBER(5)
+
+SQL>
+
+

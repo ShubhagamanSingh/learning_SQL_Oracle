@@ -1,0 +1,98 @@
+Date:-18/12/2021.
+CLASS WORK:-
+
+create table accounts
+(
+account_id varchar2(10) check(account_id like 'AC%'),
+name varchar2(20),
+balance number(6),
+primary key(account_id)
+);
+
+insert into accounts values('&account_id','&name',&balance);
+
+
+SQL> insert into accounts values('&account_id','&name',&balance);
+Enter value for account_id: AC001
+Enter value for name: Ajay
+Enter value for balance: 5000
+old   1: insert into accounts values('&account_id','&name',&balance)
+new   1: insert into accounts values('AC001','Ajay',5000)
+
+1 row created.
+
+SQL> insert into accounts values('&account_id','&name',&balance);
+Enter value for account_id: AC001
+Enter value for name: Ajay
+Enter value for balance: 5000
+old   1: insert into accounts values('&account_id','&name',&balance)
+new   1: insert into accounts values('AC001','Ajay',5000)
+
+1 row created.
+
+SQL> /
+Enter value for account_id: AC002
+Enter value for name: Robert
+Enter value for balance: 10000
+old   1: insert into accounts values('&account_id','&name',&balance)
+new   1: insert into accounts values('AC002','Robert',10000)
+
+1 row created.
+
+SQL> /
+Enter value for account_id: AC003
+Enter value for name: Mita
+Enter value for balance: 5000
+old   1: insert into accounts values('&account_id','&name',&balance)
+new   1: insert into accounts values('AC003','Mita',5000)
+
+1 row created.
+
+SQL> /
+Enter value for account_id: AC004
+Enter value for name: Sunita
+Enter value for balance: 15000
+old   1: insert into accounts values('&account_id','&name',&balance)
+new   1: insert into accounts values('AC004','Sunita',15000)
+
+1 row created.
+
+SQL> /
+Enter value for account_id: AC005
+Enter value for name: Melba
+Enter value for balance: 10000
+old   1: insert into accounts values('&account_id','&name',&balance)
+new   1: insert into accounts values('AC005','Melba',10000)
+
+1 row created.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from accounts;
+
+ACCOUNT_ID NAME                    BALANCE
+---------- -------------------- ----------
+AC001      Ajay                       5000
+AC002      Robert                    10000
+AC003      Mita                       5000
+AC004      Sunita                    15000
+AC005      Melba                     10000
+
+declare
+acno varchar2(20);
+bal int;
+begin
+acno:='&acno';
+select balance into bal from accounts where account_id=acno;
+bal:=bal-2000;
+if bal>=500 then
+update accounts set balance=bal where account_id=acno;
+commit;
+dbms_output.put_line('Account is Debited');
+else
+dbms_output.put_line('Insuffcient Balance');
+end if;
+end;
+/

@@ -1,0 +1,588 @@
+----------------------------------------------------------------------------------------------------------------
+									 _______		 _______
+									|				|		|		|
+									|				|		|		|
+									|_______		|		|		|
+											|		|		|		|
+											|		|		|		|
+									 _______|		|______\\		|_______
+
+----------------------------------------------------------------------------------------------------------------
+open cmd:-
+sqlplus / as sysdba;
+
+create user:- 
+create user <user_name> identified by <password>;
+
+grant:-
+grant dba to <user_name>;
+
+create Table:- 
+create table <table_name>
+	(
+	<column_name1> <data_type>,
+	<column_name2> <data_type>,
+	<column_name3> <data_type>
+	);
+
+desc:- to show the structure of table;
+desc <table_name>;
+
+insert:- to insert;
+insert into <table_name> values(<value1>,<value2>,<value3>);
+insert into <table_name>(<column_name1>,<column_name2>,<column_name3>) values(<value1>,<value2>,<value3>);
+
+commit:- to save;
+commit;
+
+select:- to show;
+select * from <table_name>;
+select <column_name>, <column_name> from <table_name>;
+
+		where:-
+		select * from <table_name> where <column_name1>=<value1>;
+		select <column_name>, <column_name> from table where <column_name1>=<value1>;
+		
+delete:- to delete;
+delete from <table_name> where <column_name>=<value>;
+
+rollback:- for undo;
+rollback;
+
+update:- 
+update <table_name> set <column_name>=<value> where <column_name1>=<value1>;
+clear screen:-
+clear screen;
+
+select all tables of database:-
+select * from tab;
+
+truncate:- to delete all records. 
+truncate table <table_name>;
+
+drop:- to delete database object.
+drop table <table_name>;
+
+alter:- to make changes in column.
+
+	modify:- to modify column.
+	alter table <table_name> modify <column_name> <datatype> ...;
+	
+	add:- to add column.
+	alter table <table_name> add <column_name> <datatype> ...;
+	alter table <table_name> add <column_name> <datatype> after <column_name1>; // to add after column_name1.
+	alter table <table_name> add <column_name> <datatype> first; //to add on first position.
+	
+	drop:- to delete column.
+	alter table <table_name> drop column <column_name>;
+	
+	rename:- to rename column.
+	alter table <table_name> rename column <old name> to <new name>;
+	
+rename:- to rename database object.
+rename table <old name> to <new name>;
+
+join operation :- 
+
+		if you want to select data from two tables then you can  perform join operation.
+		for join operation  atleast onr field must be common in both tables.
+
+	imagine tables:-
+	
+		table_1---> col_11(P.K.), col_12;
+		table_2---> col_21(P.K.), col_22, col_11(F.K.);
+		
+		P.K. => primary key.
+		F.K. => foreign key.
+
+	SYNTAX:- select col_12 from table_1 and col_22 from table_2 baised on col_11:-
+		
+		select col_12, col_22 from table_1, table_2 where table_2.col_11=<value>;
+
+how to make foreign key example:-
+--------------------------
+
+1st table:-
+
+create table employee
+ (
+ empid number(5) primary key,
+ empname varchar2(20)
+ );
+
+2nd table:-
+
+create table product
+ (
+ pid number(5) primary key,
+ pname varchar2(20),
+ empid number(5),							     _
+ foreign key(empid) references employee(empid)   _|-> //   making (empid as) foreign key here  //
+ );										
+
+after insertion:-
+
+1st table:-
+
+     EMPID	 EMPNAME
+	 -----	 -------
+      1001	 John
+      1002	 Brown
+      1003	 Green
+      1004	 Lily
+
+2nd table:-
+
+     PID	 PNAME           EMPID
+	 ---	 --------        -----
+     101	 Printer         1001
+     102	 Scanner         1002
+     103	 Plotter         1002
+     104	 Laptop          1003
+
+how to show joined table example:-
+
+select empname, pname from employee, product where product.empid=1001;
+
+SQL> select empname, pname from employee, product where product.empid=1001;
+
+EMPNAME              PNAME
+-------------------- --------------------
+John                 Printer
+Brown                Printer
+Green                Printer
+Lily                 Printer
+
+left join operation:-
+
+		when you perform left join operation, then all records of left table are desplayed and matching 
+		record of right table are desplayed.
+		
+	syntax:-
+	
+		select col_12, col_22 from table_1 left join table_2 on table_1.col_11=table_2.col_11;
+		
+		E.g.:- select empname, pname from employee left join product on employee.empid=product.empid;
+
+right join operation:-
+
+		when you perform right join operation, then all records of right table are desplayed and matching 
+		record of left table are desplayed.
+		
+	syntax:-
+	
+		select col_12, col_22 from table_1 right join table_2 on table_1.col_11=table_2.col_11;
+		
+		E.g.:- select empname, pname from employee right join product on employee.empid=product.empid;
+
+order by:- to show table in order according to records.
+select * from <table_name> order by <column_name>;
+select * from <table_name> order by <column_name> desc; // reverse order.
+
+operators:-
+
+	=		equal to,
+	<		less than,
+	>		greater than,
+	<=		lesser than or equal to,
+	>=		greater than or equal to,
+	<>		not equal,
+	like	to match pattern,
+	in		check values in given values,
+	between	check values in given range.
+
+
+create a table named 'empinfo' and 'empid number(5) primary key','empname varchar2(30)','department varchar2(30)', and 'salary number(6)'.
+
+and insert these info.
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1001 Ravi Singh           Developement              50000
+      1002 Priya Singh          H.R.                      65000
+      1004 Brajesh Mishra       Developement              55000
+      1003 Ajeet Kumar          Management                80000
+ 
+queries:-
+select * from empinfo where empid=1001;
+select * from empinfo where salary>50000;
+select * from empinfo where salary<65000;
+.............
+query for like:-
+select * from empinfo where empname like '%Singh';  // % mean somthing is written Before 'Singh'. //
+select * from empinfo where empname like '%s%';
+select * from empinfo where empname like '___s%';// to select where s is in third position.
+
+SQL functions:-
+
+		sum():- 
+			sum function is used to find sum of values of given column.
+			select sum(salary) from empinfo;
+		
+		max():- 
+			max function find the maximum value of given column.
+			select max(salary) "Maximum Salary" from empinfo;
+		
+		min():- 
+			min function find the minimum value of given column.
+			select min(salary) "Minimum Salary" from empinfo;
+			
+		avg():- 
+			avg function finds the average value of given column.
+			select avg(salary) "Average Salary" from empinfo;
+			
+		count():-
+			count function is used to count the rows in the table.
+			select count(salary) "Total Rows" from empinfo;
+			select count(*) "Number of Rows" from empinfo;
+		
+		distinct():-
+			this select the value ones whether it is repeted.
+			select distinct <column_name> from <table_name>
+		
+		curdate():- 
+			to input current date.
+			insert into <table_name>(date) values(curdate());
+			
+		now():- 
+			to input current date and time.
+			insert into <table_name>(date_time) values(now());
+		
+		nested query:-
+			
+			select * from empinfo where salary=(select max(salary) from empinfo); //nested query //
+											   |								|
+											    --------------------------------
+																|
+															inner query
+
+view:-
+	view is a logical table which is created by another table.
+	if you have a table with some important fields and some unimportant fields,
+	so you can create a view of unimportant fields and assign that view to an operator.
+	
+	first we create a tabel tb1 with (id, name, salary)these fields:-
+	
+	create table tb1
+	(
+	id number(6) primary key,
+	name varchar2(30),
+	salary number(8)
+	);
+	
+	now we create view named tb:-
+	
+	create view tb as select id,name from tb1;
+	
+
+check constrant:-
+	check constrant is used for validations in database object;
+	
+empid varchar2(10) p.k. must start with 'SPI'.
+empname varchar2(30) empname must be in upprs case.
+country varchar2(5) country must be 'India' or 'Nepal'.
+salary number(6) salary not more than 100000.
+----
+SQL> create table spiemp
+  2  (
+  3  empid varchar2(10) check(empid like 'SPI%'),
+  4  empname varchar2(30) check(empname=upper(empname)),
+  5  country varchar2(5) check(country in ('India','Nepal')),
+  6  salary number(6) check(salary<=100000),
+  7  primary key(empid)
+  8  );
+
+Table created.
+
+SQL> desc spiemp;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ EMPID                                     NOT NULL VARCHAR2(10)
+ EMPNAME                                            VARCHAR2(30)
+ COUNTRY                                            VARCHAR2(5)
+ SALARY                                             NUMBER(6)
+
+NOW WE CHECK VALIDATION IS WORKING OR NOT:-
+
+insert into spiemp values('1001','BRIJESH','India',50000);
+
+SQL> insert into spiemp values('1001','BRIJESH','India',50000);
+insert into spiemp values('1001','BRIJESH','India',50000)
+*
+ERROR at line 1:
+ORA-02290: check constraint (APPDB2.SYS_C007007) violated
+
+
+SQL> insert into spiemp values('SPI1001','Brijesh','India',50000);
+insert into spiemp values('SPI1001','Brijesh','India',50000)
+*
+ERROR at line 1:
+ORA-02290: check constraint (APPDB2.SYS_C007008) violated
+
+
+SQL> insert into spiemp values('SPI1001','BRIJESH','China',50000);
+insert into spiemp values('SPI1001','BRIJESH','China',50000)
+*
+ERROR at line 1:
+ORA-02290: check constraint (APPDB2.SYS_C007009) violated
+
+
+SQL> insert into spiemp values('SPI1001','BRIJESH','India',999999);
+insert into spiemp values('SPI1001','BRIJESH','India',999999)
+*
+ERROR at line 1:
+ORA-02290: check constraint (APPDB2.SYS_C007010) violated
+
+
+SQL> insert into spiemp values('SPI1001','BRIJESH','India',50000);
+
+1 row created.
+
+SO VALIDATION IS WORKING....
+
+SQL> select * from spiemp;
+
+EMPID      EMPNAME                        COUNT     SALARY
+---------- ------------------------------ ----- ----------
+SPI1001    BRIJESH                        India      50000
+
+#-> number;
+
+s# can't be primary key and
+p# can't be primary key but
+the combination of s# and p# can make primary key,
+this combination is called candidate key.
+
+SQL> create table shipment
+  2  (
+  3  s# varchar2(5),
+  4  p# varchar2(5),
+  5  qty number(5),
+  6  primary key(s#,p#)			// decleration of candidate key //
+  7  );
+
+Table created.
+
+SQL> desc shipment;
+ Name                                      Null?    Type
+ ----------------------------------------- -------- ----------------------------
+ S#                                        NOT NULL VARCHAR2(5)
+ P#                                        NOT NULL VARCHAR2(5)
+ QTY                                                NUMBER(5)
+
+HOW TO MAKE TABLE FROM EXISTING TABLE:-
+
+existing table:- empinfo.
+new table:- empinfo2.
+
+SQL> select * from empinfo;
+
+     EMPID EMPNAME              DEPARTMENT               SALARY
+---------- -------------------- -------------------- ----------
+      1001 Shubh Singh          Developement
+      1002 Shikha Mishra        HR
+      1003 Rajat Singh          Management
+
+SQL> create table empinfo2 as select empid,empname,salary from empinfo;
+
+Table created.
+
+SQL> select * from empinfo2;
+
+     EMPID EMPNAME                  SALARY
+---------- -------------------- ----------
+      1001 Shubh Singh
+      1002 Shikha Mishra
+      1003 Rajat Singh
+
+foreign key
+primary key
+unique key
+composit key
+component key
+super key
+
+normalization:-
+		
+		1. First normal form field
+		2. Second normal form
+		3. bcnf  //=boyce codd normal form
+		4. third normal form
+		5. fourth normal form
+
+----------------------------------------------------------------------------------------------------------------
+						 ______ 				 _______		 _______
+						|	   |	|  			|				|		|		|
+						|	   |	|  			|				|		|		|
+						|______|	|  			|_______		|		|		|
+						|			|  					|		|		|		|
+						|			|					|		|		|		|
+						|			|_______	 _______|		|______\\		|_______
+							
+----------------------------------------------------------------------------------------------------------------
+
+PL/SQL:-
+		pl/sql is stand for processeral language, structured query language developed by oracle corporation in 1980.
+		it is portable high performance,transaction processing language.
+		it is os indipendent language. it also interprited.
+		
+		syntax:-
+		
+		declare
+		/*In this section we declear variables.
+		This is not maindatory.*/
+
+		begin
+		/*Here you write programming and sql statements*/
+		end;
+		/
+		set serveroutput on;	--> to show output in cmd. it should be on after connecting database user. 
+		
+		code:-
+		
+		begin
+		dbms_output.put_line('Hello Word');
+		end;
+		/
+
+CODE OF SIMPLE CALCULATER:-			-------------------------------------
+
+declare
+a int;
+b int;
+begin
+a:=&a;
+b:=&b;
+dbms_output.put_line('Summation='||(a+b));
+dbms_output.put_line('Substration='||(a-b));
+dbms_output.put_line('Multiplication='||(a*b));
+dbms_output.put_line('Division='||(a/b));
+end;
+/
+
+a:=&a---->Enter value for a // a:=<value>
+a:=&b---->Enter value for b // b:=<value>
+
+IF STATEMENT:-
+
+if condition then
+/* code of if */
+end if;
+
+IF-ELSE STATEMENT:-
+
+if condition then
+/* code of if */
+else
+/* code of else */
+end if;
+
+LADDER IF-ELSE STATEMENT:-
+
+if condition1 then
+/* code1 */
+elsif condition2 then
+/* code2 */
+else
+/* code3 */
+end if;
+
+WRITE A PL/SQL CODE TO CHECK GIVEN NUMBER IS EVEN OR ODD -------------------------------
+
+declare
+a int;
+begin
+a:=&a;
+if a mod 2=0 then
+dbms_output.put_line('Even');
+else
+dbms_output.put_line('Odd');
+end if;
+end;
+/
+
+LOOP IN PL/SQL:-
+
+LOOP CONTROL:-
+		
+		IF YOU HAVE A BLOCK OF CODE WHICH YOU WANT TO REPEATEDLY UP TO GIVEN CONDOTION IS TRUE THEN YOU CAN USE LOOP CONTROL.
+		
+		IN PL/SQL THERE ARE THREE TYPES OF LOOP CONTROL:-
+		
+		1. BASIC LOOP;
+		2. WHILE LOOP;
+		3. FOR LOOP;
+		
+BASIC LOOP:-
+		
+	SYNTAX:-
+			
+	loop
+	/* code */
+	end loop;
+
+PL/SQL CODE TO PRINT NUMBER 1 TO 5:-
+
+declare
+a int;
+begin
+a:=1;
+loop
+dbms_output.put_line(a);
+a:=a+1;
+exit when a>5;
+end loop;
+end;
+/
+
+WHILE LOOP:-
+		
+	SYNTAX:-
+		
+	while(condition)
+	loop
+	/* code */
+	end loop;					
+
+PL/SQL CODE TO PRINT TABLE OF GIVEN NUMBER:-
+
+declare
+n int;
+i int;
+begin
+n:=&n;
+i:=1;
+while(n<=10)
+loop
+dbms_output.put_line(n||'*'||i||'='||(n*i));
+i:=i+1;
+end loop;
+end;
+/
+
+FOR LOOP:-
+
+	syntax:-
+	
+	for <loop variable> in <lower limit>..<upper limit>
+	loop
+	/* code */
+	end loop;
+	end;
+	/
+	
+	
+PL/SQL CODE TO PRINT NUMBER 1 TO 10 USING FOR LOOP:-
+
+<no need of declare section>
+
+begin
+for i in 1..10
+loop
+dbms_output.put_line(i);
+end loop;
+end;
+/
+
+								  _____________________________
+								//  © 2021 Shubhagaman Singh.  \\

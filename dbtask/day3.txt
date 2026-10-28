@@ -1,0 +1,108 @@
+Microsoft Windows [Version 10.0.19042.985]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\SHUBHAGAMAM SINGH>sqlplus / as sysdba
+
+SQL*Plus: Release 11.2.0.2.0 Beta on Wed Dec 15 14:15:06 2021
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - Beta
+
+SQL> connect mydb/test;
+Connected.
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+ORDERS                         TABLE
+PERSONAL                       TABLE
+STUDENT                        TABLE
+
+SQL> create table spiemp
+  2  (
+  3  empid number(5) primary key,
+  4  empname varchar2(30),
+  5  department varchar2(20),
+  6  salary number(6)
+  7  );
+
+Table created.
+
+SQL> select * from tab;
+
+TNAME                          TABTYPE  CLUSTERID
+------------------------------ ------- ----------
+ORDERS                         TABLE
+PERSONAL                       TABLE
+SPIEMP                         TABLE
+STUDENT                        TABLE
+
+SQL> insert into spiemp values(1001,'Rajat Singh','Management',80000);
+
+1 row created.
+
+SQL> insert into spiemp values(1002,'Brijesh Mishra','Development',55000);
+
+1 row created.
+
+SQL> insert into spiemp values(1003,'Rohit Singh','Development',55000);
+
+1 row created.
+
+SQL> insert into spiemp values(1004,'Anand Singh','Development',50000);
+
+1 row created.
+
+SQL> insert into spiemp values(1005,'Disha Verma','HR',60000);
+
+1 row created.
+
+SQL> select * from spiemp order by empname;
+
+     EMPID EMPNAME                        DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1004 Anand Singh                    Development               50000
+      1002 Brijesh Mishra                 Development               55000
+      1005 Disha Verma                    HR                        60000
+      1001 Rajat Singh                    Management                80000
+      1003 Rohit Singh                    Development               55000
+
+SQL> select * from spiemp order by empname desc;
+
+     EMPID EMPNAME                        DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1003 Rohit Singh                    Development               55000
+      1001 Rajat Singh                    Management                80000
+      1005 Disha Verma                    HR                        60000
+      1002 Brijesh Mishra                 Development               55000
+      1004 Anand Singh                    Development               50000
+
+SQL> select * from spiemp where empname like '%Singh';
+
+     EMPID EMPNAME                        DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1001 Rajat Singh                    Management                80000
+      1003 Rohit Singh                    Development               55000
+      1004 Anand Singh                    Development               50000
+
+SQL> select * from spiemp where salary=(select max(salary) from spiemp);
+
+     EMPID EMPNAME                        DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1001 Rajat Singh                    Management                80000
+
+SQL>
+SQL> select * from spiemp where salary=(select min(salary) from spiemp);
+
+     EMPID EMPNAME                        DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1004 Anand Singh                    Development               50000
+
+SQL> select * from spiemp where salary=(select max(salary) from spiemp where salary<(select max(salary) from spiemp));
+
+     EMPID EMPNAME                        DEPARTMENT               SALARY
+---------- ------------------------------ -------------------- ----------
+      1005 Disha Verma                    HR                        60000

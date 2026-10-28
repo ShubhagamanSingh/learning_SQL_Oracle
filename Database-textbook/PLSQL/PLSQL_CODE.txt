@@ -1,0 +1,95 @@
+Microsoft Windows [Version 10.0.19042.985]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\SHUBHAGAMAM SINGH>sqlplus / as sysdba;
+
+SQL*Plus: Release 11.2.0.2.0 Beta on Fri Dec 17 11:42:47 2021
+
+Copyright (c) 1982, 2010, Oracle.  All rights reserved.
+
+
+Connected to:
+Oracle Database 11g Express Edition Release 11.2.0.2.0 - Beta
+
+SQL> begin
+  2  dbms_output.put_line('Hello Word');
+  3  end;
+  4  /
+
+PL/SQL procedure successfully completed.
+
+SQL> set serveroutput on;
+SQL> begin
+  2  dbms_output.put_line('Hello Word');
+  3  end;
+  4  /
+Hello Word
+
+PL/SQL procedure successfully completed.
+
+CODE FOR SIMPLE CALCULATOR:-				------------------------------
+
+SQL> declare
+  2  a int;
+  3  b int;
+  4  begin
+  5  a:=&a;
+  6  b:=&b;
+  7  dbms_output.put_line('Summation='||(a+b));
+  8  dbms_output.put_line('Substration='||(a-b));
+  9  dbms_output.put_line('Multiplication='||(a*b));
+ 10  dbms_output.put_line('Division='||(a/b));
+ 11  end;
+ 12  /
+Enter value for a: 10
+old   5: a:=&a;
+new   5: a:=10;
+Enter value for b: 5
+old   6: b:=&b;
+new   6: b:=5;
+Summation=15
+Substration=5
+Multiplication=50
+Division=2
+
+PL/SQL procedure successfully completed.
+
+
+CODE FOR EVEN ODD USING IF-ELSE:-			-------------------------------------------
+
+SQL> declare
+  2  a int;
+  3  begin
+  4  a:=&a;
+  5  if a mod 2=0 then
+  6  dbms_output.put_line('Even');
+  7  else
+  8  dbms_output.put_line('Odd');
+  9  end if;
+ 10  end;
+ 11  /
+Enter value for a: 3
+old   4: a:=&a;
+new   4: a:=3;
+Odd
+
+PL/SQL procedure successfully completed.
+
+SQL> declare
+  2  a int;
+  3  begin
+  4  a:=&a;
+  5  if a mod 2=0 then
+  6  dbms_output.put_line('Even');
+  7  else
+  8  dbms_output.put_line('Odd');
+  9  end if;
+ 10  end;
+ 11  /
+Enter value for a: 4
+old   4: a:=&a;
+new   4: a:=4;
+Even
+
+PL/SQL procedure successfully completed.
+
